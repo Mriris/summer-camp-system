@@ -14,7 +14,7 @@
               <h1>夏令营管理系统</h1>
               <p>管理报名、审核、活动安排全面支持夏令营的高效管理</p>
               <div class="d-flex">
-                <a href="/login" class="btn-get-started">登录</a>
+                <router-link to="/login" class="btn-get-started">登录</router-link>
                 <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8"
                    class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
               </div>

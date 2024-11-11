@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <Header />   <!-- 导航栏组件 -->
-    <router-view />  <!-- 用于显示页面内容 -->
-    <Footer />   <!-- 页脚组件 -->
+    <Header /> <!-- 导航栏组件 -->
+    <div class="main-content">
+      <router-view /> <!-- 用于显示页面内容 -->
+    </div>
+    <Footer /> <!-- 页脚组件 -->
   </div>
 </template>
+
 
 <script>
 import Header from './components/Header.vue';
@@ -20,5 +23,8 @@ export default {
 </script>
 
 <style>
-/* 在这里添加全局样式 */
+/* 设置 main-content 的顶部内边距，确保内容不会被 Header 遮挡 */
+.main-content {
+  padding-top: 80px; /* 根据 Header 的高度调整 */
+}
 </style>

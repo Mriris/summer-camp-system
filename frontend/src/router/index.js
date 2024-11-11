@@ -5,7 +5,11 @@ import Register from '@/views/Register.vue';
 
 const routes = [
     { path: '/', name: 'Home', component: Home },  // 默认路径指向 Home 组件
-    { path: '/login', component: Login },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/Login.vue')
+    },
     { path: '/register', component: Register }
 ];
 
