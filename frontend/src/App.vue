@@ -25,6 +25,8 @@ export default {
 <style>
 /* 设置 main-content 的顶部内边距，确保内容不会被 Header 遮挡 */
 .main-content {
-  padding-top: 80px; /* 根据 Header 的高度调整 */
+  margin-left: 250px; /* 假设侧边栏宽度为 250px */
+  padding-top: 80px; /* 留出顶部导航栏的空间 */
+  width: calc(100% - 250px); /* 根据侧边栏宽度调整主内容的宽度 */
 }
 </style>

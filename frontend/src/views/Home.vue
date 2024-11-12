@@ -699,14 +699,15 @@
               <div class="faq-container">
                 <div
                     v-for="(faq, index) in faqs"
-                    :key="index"
+                    :key="activeIndex === index ? 'active' : index"
                     class="faq-item"
                     :class="{ 'faq-active': activeIndex === index }"
                     @click="toggleFAQ(index)"
                     data-aos="fade-up"
                     :data-aos-delay="200 + index * 100"
                 >
-                  <i class="faq-icon bi bi-question-circle"></i>
+
+                <i class="faq-icon bi bi-question-circle"></i>
                   <h3>{{ faq.question }}</h3>
                   <div class="faq-content" v-show="activeIndex === index">
                     <p>{{ faq.answer }}</p>
@@ -805,7 +806,16 @@
           </div>
         </div>
       </section><!-- /联系我们部分 -->
-
+      <div class="footer-newsletter">
+        <div class="container">
+          <div class="row justify-content-center text-center">
+            <div class="col-lg-6">
+              <h4>加入我们的GitHub</h4>
+              <link>https://github.com/Mriris/summer-camp-system.git</link>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </main>
     <!-- 使用 Footer 组件 -->
@@ -820,6 +830,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'aos/dist/aos.css';
+import { nextTick } from 'vue';
 
 
 export default {
@@ -904,6 +915,9 @@ export default {
     toggleFAQ(index) {
       // 切换当前项的展开状态
       this.activeIndex = this.activeIndex === index ? null : index;
+
+      // // 强制 Vue 更新 DOM
+      // await nextTick();
     },
   },
   mounted() {

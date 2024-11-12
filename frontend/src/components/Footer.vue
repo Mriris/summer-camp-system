@@ -5,16 +5,7 @@
 <template>
   <footer id="footer" class="footer">
 
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>加入我们的GitHub</h4>
-            <link>https://github.com/Mriris/summer-camp-system.git</link>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <div class="container footer-top">
       <div class="row gy-4">
