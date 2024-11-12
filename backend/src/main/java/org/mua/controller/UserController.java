@@ -17,18 +17,21 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    /**
+     * 注册用户，检查在籍学生身份
+     */
     @PostMapping("/register")
     public ResponseEntity<String> registerUser(@RequestBody User user) {
         System.out.println("收到注册信息：");
-        System.out.println("Username: " + user.getUsername());
-        System.out.println("Password: " + user.getPassword());
-        System.out.println("ID Number: " + user.getIdNumber());
+        System.out.println("用户名: " + user.getUsername());
+        System.out.println("密码: " + user.getPassword());
+        System.out.println("身份证号: " + user.getIdNumber());
 
         try {
             userService.registerUser(user);
-            return ResponseEntity.ok("User registered successfully");
+            return ResponseEntity.ok("用户注册成功");
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body("注册失败: " + e.getMessage());
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
@@ -41,8 +44,8 @@ public class UserController {
         String password = loginData.get("password");
 
         System.out.println("收到登录信息：");
-        System.out.println("Email or ID Number: " + emailOrIdNumber);
-        System.out.println("Password: " + password);
+        System.out.println("邮箱或身份证号: " + emailOrIdNumber);
+        System.out.println("密码: " + password);
 
         User user = userService.validateUser(emailOrIdNumber, password);
         if (user != null) {
@@ -50,14 +53,14 @@ public class UserController {
 
             // 构造返回的数据，包括消息和用户名
             Map<String, String> response = new HashMap<>();
-            response.put("message", "Login successful");
+            response.put("message", "登录成功");
             response.put("username", user.getUsername()); // 返回用户名
 
             return ResponseEntity.ok(response);
         } else {
             System.out.println("登录失败");
             Map<String, String> errorResponse = new HashMap<>();
-            errorResponse.put("message", "Invalid email/ID number or password");
+            errorResponse.put("message", "邮箱或身份证号或密码无效");
 
             return ResponseEntity.status(401).body(errorResponse);
         }

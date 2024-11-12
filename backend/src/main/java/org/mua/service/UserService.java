@@ -1,7 +1,9 @@
 package org.mua.service;
 
 import org.mua.model.User;
+import org.mua.model.EnrolledStudent;
 import org.mua.repository.UserRepository;
+import org.mua.repository.EnrolledStudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,23 +15,30 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    /**
-     * 注册用户并检查用户名、邮箱、身份证号的唯一性
-     */
-    public User registerUser(User user) {
-        if (userRepository.existsByUsername(user.getUsername())
-                || userRepository.existsByEmail(user.getEmail())
-                || userRepository.existsByIdNumber(user.getIdNumber())) {
-            throw new RuntimeException("Username, Email, or ID Number already exists");
-        }
-        return userRepository.save(user);
-    }
+    @Autowired
+    private EnrolledStudentRepository enrolledStudentRepository;
 
     /**
-     * 根据用户名查找用户
+     * 注册用户并检查在籍学生身份、邮箱唯一性
      */
-    public Optional<User> findByUsername(String username) {
-        return userRepository.findByUsername(username);
+    public User registerUser(User user) {
+        // 检查在籍学生身份
+        Optional<EnrolledStudent> enrolledStudent = enrolledStudentRepository.findByUsernameAndIdNumber(user.getUsername(), user.getIdNumber());
+        if (enrolledStudent.isEmpty()) {
+            throw new RuntimeException("用户不是在籍学生，无法注册");
+        }
+
+        // 检查邮箱的唯一性
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("邮箱已存在");
+        }
+
+        // 检查用户名和身份证号的唯一性
+        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByIdNumber(user.getIdNumber())) {
+            throw new RuntimeException("用户名或身份证号已存在");
+        }
+
+        return userRepository.save(user);
     }
 
     /**
@@ -43,17 +52,15 @@ public class UserService {
         Optional<User> user;
 
         if (emailOrIdNumber.contains("@")) {
-            // 通过邮箱查找用户
             user = userRepository.findByEmail(emailOrIdNumber);
         } else {
-            // 通过身份证号查找用户
             user = userRepository.findByIdNumber(emailOrIdNumber);
         }
 
         // 检查用户是否存在并匹配密码
         if (user.isPresent() && password.equals(user.get().getPassword())) {
-            return user.get(); // 返回用户对象
+            return user.get();
         }
-        return null; // 登录失败返回 null
+        return null;
     }
 }

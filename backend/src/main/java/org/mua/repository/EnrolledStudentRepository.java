@@ -1,10 +1,10 @@
+// src/main/java/org/mua/repository/EnrolledStudentRepository.java
 package org.mua.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 import org.mua.model.EnrolledStudent;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-@Repository
 public interface EnrolledStudentRepository extends JpaRepository<EnrolledStudent, String> {
-    boolean existsByUsernameAndIdNumber(String username, String idNumber);
+    Optional<EnrolledStudent> findByUsernameAndIdNumber(String username, String idNumber);
 }
