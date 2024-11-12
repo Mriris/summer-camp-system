@@ -580,7 +580,7 @@
 </template>
 
 <script>
-import Sidebar from './Sidebar.vue';
+import Sidebar from '../components/Sidebar.vue';
 export default {
   name: "DashboardComponent",
   components: {
