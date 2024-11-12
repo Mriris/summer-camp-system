@@ -1,70 +1,59 @@
+<!-- src/views/Login.vue -->
 <template>
-  <div class="login-page">
-    <h1>登录</h1>
-    <form @submit.prevent="handleLogin">
-      <div class="form-group">
+  <div class="login">
+    <h2>用户登录</h2>
+    <form @submit.prevent="login">
+      <div>
         <label for="username">用户名:</label>
-        <input type="text" id="username" v-model="username" required />
+        <input v-model="username" id="username" required />
       </div>
-      <div class="form-group">
+      <div>
         <label for="password">密码:</label>
-        <input type="password" id="password" v-model="password" required />
+        <input v-model="password" id="password" type="password" required />
       </div>
       <button type="submit">登录</button>
     </form>
+    <p v-if="message">{{ message }}</p>
   </div>
 </template>
 
 <script>
+import axios from '../axiosInstance';
+
 export default {
   name: 'Login',
   data() {
     return {
       username: '',
-      password: ''
+      password: '',
+      message: '',
     };
   },
   methods: {
-    handleLogin() {
-      // 处理登录逻辑，比如通过 API 验证用户名和密码
-      console.log('Username:', this.username);
-      console.log('Password:', this.password);
-    }
-  }
+    async login() {
+      // 打印发送的数据到控制台
+      console.log('发送登录：', {
+        username: this.username,
+        password: this.password,
+      });
+
+      try {
+        const response = await axios.post('/users/login', {
+          username: this.username,
+          password: this.password,
+        });
+        this.message = '登录成功！';
+        console.log('Login response:', response); // 打印响应内容到控制台
+        // 这里可以将用户信息存储在本地存储或 Vuex 中
+      } catch (error) {
+        console.error('Login error:', error); // 打印错误到控制台
+        this.message = '登录失败: ' + (error.response?.data || '未知错误');
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.login-page {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 1em;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-}
-.form-group {
-  margin-bottom: 1em;
-}
-label {
-  display: block;
-  margin-bottom: 0.5em;
-}
-input {
-  width: 100%;
-  padding: 0.5em;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-button {
-  width: 100%;
-  padding: 0.7em;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-button:hover {
-  background-color: #0056b3;
-}
+/* 可以在这里添加你的样式 */
 </style>

@@ -18,6 +18,8 @@
           <li><a href="#about">关于我们</a></li>
           <li><a href="#services">特点</a></li>
           <li><a href="#team">团队介绍</a></li>
+          <router-link to="/register">注册</router-link>
+          <router-link to="/login">登录</router-link>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>

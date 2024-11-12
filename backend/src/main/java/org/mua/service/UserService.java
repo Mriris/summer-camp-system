@@ -4,7 +4,6 @@ package org.mua.service;
 import org.mua.model.User;
 import org.mua.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,14 +14,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     public User registerUser(User user) {
         if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("Username or Email already exists");
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // 直接保存明文密码
         return userRepository.save(user);
     }
 
@@ -32,6 +28,7 @@ public class UserService {
 
     public boolean validateUser(String username, String password) {
         Optional<User> user = userRepository.findByUsername(username);
-        return user.isPresent() && passwordEncoder.matches(password, user.get().getPassword());
+        // 直接比较明文密码
+        return user.isPresent() && password.equals(user.get().getPassword());
     }
 }
