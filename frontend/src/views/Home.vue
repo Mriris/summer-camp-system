@@ -2,7 +2,7 @@
 <template>
   <div class="index-page">
     <!-- 使用 Header 组件 -->
-    <Header />
+    <Header/>
     <main class="main">
 
       <!-- Hero Section -->
@@ -27,27 +27,27 @@
 
       </section><!-- /Hero Section -->
 
-      <!-- Clients Section -->
-      <section id="clients" class="clients section light-background">
+      <!--      &lt;!&ndash; Clients Section &ndash;&gt;-->
+      <!--      <section id="clients" class="clients section light-background">-->
 
-        <div class="container" data-aos="zoom-in">
+      <!--        <div class="container" data-aos="zoom-in">-->
 
-          <div class="swiper init-swiper">
-            <div class="swiper-wrapper align-items-center">
-              <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>
-              <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>
-            </div>
-          </div>
+      <!--          <div class="swiper init-swiper">-->
+      <!--            <div class="swiper-wrapper align-items-center">-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-5.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-6.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-7.png" class="img-fluid" alt=""></div>-->
+      <!--              <div class="swiper-slide"><img src="assets/img/clients/client-8.png" class="img-fluid" alt=""></div>-->
+      <!--            </div>-->
+      <!--          </div>-->
 
-        </div>
+      <!--        </div>-->
 
-      </section><!-- /Clients Section -->
+      <!--      </section>&lt;!&ndash; /Clients Section &ndash;&gt;-->
 
       <!-- About Section -->
       <section id="about" class="about section">
@@ -63,24 +63,25 @@
 
             <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
               <p>
-                我们是一个专注于夏令营管理系统开发的团队，致力于提供高效的管理系统，简化学生报名、活动管理和审核流程。
+                我们是一个专注于夏令营管理系统开发的团队，致力于为夏令营活动提供全面的数字化解决方案，简化报名、活动管理和审核流程，让组织者和参与者都能获得更佳的体验。
               </p>
               <ul>
-                <li><i class="bi bi-check2-circle"></i> <span>通过物理感知双流网络，精确估计水下环境中的光学特性。</span>
-                </li>
-                <li><i class="bi bi-check2-circle"></i> <span>使用深度学习技术应对多样化的水下场景。</span>
+                <li><i class="bi bi-check2-circle"></i> <span>支持在线报名和多级审核，确保报名过程简便且信息准确。</span>
                 </li>
                 <li><i class="bi bi-check2-circle"></i>
-                  <span>在保持图像细节的同时，恢复真实的水下色彩。</span></li>
+                  <span>集成活动日程安排和提醒功能，帮助学员和家长随时了解活动安排。</span></li>
+                <li><i class="bi bi-check2-circle"></i>
+                  <span>提供动态数据分析和反馈，帮助主办方优化活动管理和用户体验。</span></li>
               </ul>
             </div>
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-              <p>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-              <a href="#" class="read-more"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <p>
+                我们的夏令营管理系统不仅提供便捷的报名和审核流程，还支持活动日程安排、学员档案管理、通知发送等功能，确保每一项活动都能顺利开展。通过我们系统的智能化管理，组织者能够节省大量时间和精力，专注于活动本身的质量提升。
+              </p>
+              <a href="#" class="read-more"><span>了解更多</span><i class="bi bi-arrow-right"></i></a>
             </div>
+
 
           </div>
 
@@ -98,47 +99,41 @@
             <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
 
               <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
-                <h3>夏令营管理解决方案
-                </h3>
+                <h3>夏令营管理解决方案</h3>
                 <p>
-                  通过我们的系统，实现高效的报名管理、活动安排和审核流程，适用于学校夏令营场景。
+                  我们的夏令营管理系统为学校和教育机构提供了全面的解决方案，从学生报名到活动安排，再到管理和反馈的各个环节，确保夏令营活动的高效和顺利开展。
                 </p>
               </div>
 
               <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
 
                 <div class="faq-item faq-active">
-
-                  <h3><span>01</span> Non consectetur a erat nam at lectus urna duis?</h3>
+                  <h3><span>01</span> 如何通过系统进行学生的在线报名？</h3>
                   <div class="faq-content">
-                    <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                      non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                      purus non.</p>
+                    <p>
+                      我们的系统支持在线报名功能。家长或学生可以在指定时间段内通过网络平台完成报名，填写个人信息、选择活动项目，并实时查看报名状态。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item">
-                  <h3><span>02</span> Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                  <h3><span>02</span> 系统如何帮助安排和管理活动日程？</h3>
                   <div class="faq-content">
-                    <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                      velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                      donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                      cursus turpis massa tincidunt dui.</p>
+                    <p>
+                      系统提供智能化的活动日程安排功能，可以根据参与人数和活动需求进行分组安排。活动时间表和详细日程将会自动生成并发送给相关的学生和家长，确保活动顺利进行。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item">
-                  <h3><span>03</span> Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                  <h3><span>03</span> 系统如何支持夏令营活动的数据分析和反馈收集？</h3>
                   <div class="faq-content">
-                    <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                      pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                      Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                      tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                    <p>
+                      系统会自动记录活动的各项数据，包括参与人数、活动反馈、学生表现等。主办方可以查看这些数据，分析活动效果，并根据反馈优化未来的夏令营安排。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
+
 
               </div>
 
@@ -166,11 +161,11 @@
 
             <div class="col-lg-6 pt-4 pt-lg-0 content">
 
-              <h3>Voluptatem dignissimos provident quasi corporis voluptas</h3>
+              <h3>提供高效的夏令营管理解决方案</h3>
               <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore et dolore magna aliqua.
+                我们致力于为学校和教育机构提供一个全面、可靠的夏令营管理系统，从报名管理到活动安排，帮助您轻松管理夏令营的每一个环节。
               </p>
+
 
               <div class="skills-content skills-animation">
 
@@ -232,15 +227,15 @@
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-activity icon"></i></div>
                 <h4>报名管理</h4>
-                <p>支持学生在线报名，简化报名流程并自动保存报名信息，方便审核和后续管理。</p>
+                <p>支持学生在线报名，简化报名流程并自动保存报名信息，方便后续审核和管理。</p>
               </div>
             </div><!-- End Service Item -->
 
             <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-bounding-box-circles icon"></i></div>
-                <h4><a href="" class="stretched-link">Sed ut perspici</a></h4>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+                <h4>资料管理</h4>
+                <p>集中管理学生和教师资料，支持信息的更新、查阅和导出，方便快速获取关键信息。</p>
               </div>
             </div><!-- End Service Item -->
 
@@ -248,7 +243,7 @@
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-calendar4-week icon"></i></div>
                 <h4>审核流程</h4>
-                <p>自动化的报名审核系统，支持院系和校方多级审核，确保报名信息的准确和完整。</p>
+                <p>自动化的报名审核流程，支持多级审核和审批记录保存，确保信息的准确性和审核流程的透明性。</p>
               </div>
             </div><!-- End Service Item -->
 
@@ -256,11 +251,12 @@
               <div class="service-item position-relative">
                 <div class="icon"><i class="bi bi-broadcast icon"></i></div>
                 <h4>活动管理</h4>
-                <p>支持活动的创建、安排和管理，确保夏令营活动顺利进行并方便学生参与。</p>
+                <p>支持活动的创建、时间安排和任务分配，确保夏令营活动顺利组织、执行，并便于学生和教师的参与。</p>
               </div>
             </div><!-- End Service Item -->
 
           </div>
+
 
         </div>
 
@@ -275,11 +271,11 @@
 
           <div class="row" data-aos="zoom-in" data-aos-delay="100">
             <div class="col-xl-9 text-center text-xl-start">
-              <h3>Call To Action</h3>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.</p>
+              <h3>立即行动，加入我们的夏令营管理系统</h3>
+              <p>
+                我们的夏令营管理系统为您提供简化的报名流程、高效的活动管理和智能化的审核功能。让我们一起为学生们打造更丰富的夏令营体验，节省管理时间，提高工作效率！</p>
             </div>
+
             <div class="col-xl-3 cta-btn-container text-center">
               <a class="cta-btn align-middle" href="#">Call To Action</a>
             </div>
@@ -289,160 +285,271 @@
 
       </section><!-- /Call To Action Section -->
 
-      <!-- Portfolio Section -->
-      <section id="portfolio" class="portfolio section">
+<!--      &lt;!&ndash; Portfolio Section &ndash;&gt;-->
+<!--      <section id="portfolio" class="portfolio section">-->
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>Portfolio</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
+<!--        &lt;!&ndash; Section Title &ndash;&gt;-->
+<!--        <div class="container section-title" data-aos="fade-up">-->
+<!--          <h2>Portfolio</h2>-->
+<!--          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>-->
+<!--        </div>&lt;!&ndash; End Section Title &ndash;&gt;-->
 
-        <div class="container">
+<!--        <div class="container">-->
 
-          <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+<!--          <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">-->
 
-            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-product">Card</li>
-              <li data-filter=".filter-branding">Web</li>
-            </ul><!-- End Portfolio Filters -->
+<!--            <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">-->
+<!--              <li data-filter="*" class="filter-active">All</li>-->
+<!--              <li data-filter=".filter-app">App</li>-->
+<!--              <li data-filter=".filter-product">Card</li>-->
+<!--              <li data-filter=".filter-branding">Web</li>-->
+<!--            </ul>&lt;!&ndash; End Portfolio Filters &ndash;&gt;-->
 
-            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
+<!--            <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1"
-                     data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>App 1</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-1.jpg" title="App 1"-->
+<!--                     data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1"
-                     data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>Product 1</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-2.jpg" title="Product 1"-->
+<!--                     data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 1</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1"
-                     data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>Branding 1</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-3.jpg" title="Branding 1"-->
+<!--                     data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 2</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2"
-                     data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>App 2</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-4.jpg" title="App 2"-->
+<!--                     data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 2</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2"
-                     data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>Product 2</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-5.jpg" title="Product 2"-->
+<!--                     data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 2</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2"
-                     data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>Branding 2</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-6.jpg" title="Branding 2"-->
+<!--                     data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>App 3</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="App 3"
-                     data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-app">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>App 3</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-7.jpg" title="App 3"-->
+<!--                     data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Product 3</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3"
-                     data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-product">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>Product 3</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-8.jpg" title="Product 3"-->
+<!--                     data-gallery="portfolio-gallery-product" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">
-                <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Branding 3</h4>
-                  <p>Lorem ipsum, dolor sit</p>
-                  <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2"
-                     data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i
-                      class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i
-                      class="bi bi-link-45deg"></i></a>
-                </div>
-              </div><!-- End Portfolio Item -->
+<!--              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-branding">-->
+<!--                <img src="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" class="img-fluid" alt="">-->
+<!--                <div class="portfolio-info">-->
+<!--                  <h4>Branding 3</h4>-->
+<!--                  <p>Lorem ipsum, dolor sit</p>-->
+<!--                  <a href="assets/img/masonry-portfolio/masonry-portfolio-9.jpg" title="Branding 2"-->
+<!--                     data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i-->
+<!--                      class="bi bi-zoom-in"></i></a>-->
+<!--                  <a href="portfolio-details.html" title="More Details" class="details-link"><i-->
+<!--                      class="bi bi-link-45deg"></i></a>-->
+<!--                </div>-->
+<!--              </div>&lt;!&ndash; End Portfolio Item &ndash;&gt;-->
 
-            </div><!-- End Portfolio Container -->
+<!--            </div>&lt;!&ndash; End Portfolio Container &ndash;&gt;-->
 
-          </div>
+<!--          </div>-->
 
-        </div>
+<!--        </div>-->
 
-      </section><!-- /Portfolio Section -->
+<!--      </section>&lt;!&ndash; /Portfolio Section &ndash;&gt;-->
 
       <!-- Team Section -->
       <section id="team" class="team section">
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials section">
 
+          <!-- Section Title -->
+          <div class="container section-title" data-aos="fade-up">
+            <h2>组长</h2>
+            <p>大连海事大学软件工程15组</p>
+          </div><!-- End Section Title -->
+
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="swiper init-swiper">
+              <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                    <h3>开发团队</h3>
+                    <h4>Ceo &amp; Founder</h4>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>负责项目整体管理与协调，确保项目按计划进展，拥有丰富的项目管理经验。</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                    <h3>Sara Wilsson</h3>
+                    <h4>Designer</h4>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                    <h3>Jena Karlis</h3>
+                    <h4>Store Owner</h4>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                    <h3>Matt Brandon</h3>
+                    <h4>Freelancer</h4>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                    <h3>John Larson</h3>
+                    <h4>Entrepreneur</h4>
+                    <div class="stars">
+                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                        class="bi bi-star-fill"></i>
+                    </div>
+                    <p>
+                      <i class="bi bi-quote quote-icon-left"></i>
+                      <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                      <i class="bi bi-quote quote-icon-right"></i>
+                    </p>
+                  </div>
+                </div><!-- End testimonial item -->
+
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+
+          </div>
+
+        </section><!-- /Testimonials Section -->
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>团队介绍</h2>
-          <p>我们团队由夏令营管理系统领域的专家组成，专注于系统开发、用户体验优化和技术支持，致力于提供高效的夏令营管理解决方案。</p>
+          <h2>组员介绍</h2>
+          <p>
+            我们团队由夏令营管理系统领域的专家组成，专注于系统开发、用户体验优化和技术支持，致力于提供高效的夏令营管理解决方案。</p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -453,14 +560,14 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>Walter White</h4>
-                  <span>Chief Executive Officer</span>
-                  <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                  <h4>杨可心</h4>
+                  <span>文档负责人</span>
+                  <p>负责项目文档的撰写和整理，确保每个开发步骤和技术细节被准确记录。</p>
                   <div class="social">
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
                 </div>
               </div>
@@ -470,14 +577,14 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>Sarah Jhonson</h4>
-                  <span>Product Manager</span>
-                  <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
+                  <h4>谭佳熙</h4>
+                  <span>后端开发负责人</span>
+                  <p>负责后端系统开发，包括API接口设计和业务逻辑实现，保障系统稳定高效。</p>
                   <div class="social">
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
                 </div>
               </div>
@@ -487,14 +594,14 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>William Anderson</h4>
-                  <span>CTO</span>
-                  <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+                  <h4>符镇侃</h4>
+                  <span>数据库管理员</span>
+                  <p>负责数据库的设计与维护，确保数据的完整性、安全性和高效访问。</p>
                   <div class="social">
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
                 </div>
               </div>
@@ -504,14 +611,14 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>Amanda Jepson</h4>
-                  <span>Accountant</span>
-                  <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
+                  <h4>赵网</h4>
+                  <span>前端开发工程师</span>
+                  <p>负责前端用户界面的开发，优化用户体验，确保系统界面友好直观。</p>
                   <div class="social">
                     <a href=""><i class="bi bi-twitter-x"></i></a>
                     <a href=""><i class="bi bi-facebook"></i></a>
                     <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""> <i class="bi bi-linkedin"></i> </a>
+                    <a href=""><i class="bi bi-linkedin"></i></a>
                   </div>
                 </div>
               </div>
@@ -528,8 +635,8 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>Pricing</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+          <h2>收费标准</h2>
+          <p>我们提供多种夏令营套餐，满足不同年龄段学生的需求，并确保提供优质的学习和活动体验。</p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -538,48 +645,49 @@
 
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="pricing-item">
-                <h3>Free Plan</h3>
-                <h4><sup>$</sup>0<span> / month</span></h4>
+                <h3>基础计划</h3>
+                <h4><sup>¥</sup>0<span> / 夏令营</span></h4>
                 <ul>
-                  <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                  <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                  <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                  <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
-                  <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                  <li><i class="bi bi-check"></i> <span>报名与基础信息管理</span></li>
+                  <li><i class="bi bi-check"></i> <span>课程与活动浏览</span></li>
+                  <li><i class="bi bi-check"></i> <span>简单的个人信息记录</span></li>
+                  <li class="na"><i class="bi bi-x"></i> <span>高级活动参与</span></li>
+                  <li class="na"><i class="bi bi-x"></i> <span>专属客服支持</span></li>
                 </ul>
-                <a href="#" class="buy-btn">Buy Now</a>
+                <a href="#" class="buy-btn">立即加入</a>
               </div>
             </div><!-- End Pricing Item -->
 
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
               <div class="pricing-item featured">
-                <h3>Business Plan</h3>
-                <h4><sup>$</sup>29<span> / month</span></h4>
+                <h3>进阶计划</h3>
+                <h4><sup>¥</sup>299<span> / 夏令营</span></h4>
                 <ul>
-                  <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                  <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                  <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                  <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                  <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                  <li><i class="bi bi-check"></i> <span>所有基础功能</span></li>
+                  <li><i class="bi bi-check"></i> <span>活动参与优先权</span></li>
+                  <li><i class="bi bi-check"></i> <span>更多课程选择</span></li>
+                  <li><i class="bi bi-check"></i> <span>健康记录与报告</span></li>
+                  <li><i class="bi bi-check"></i> <span>专属客服支持</span></li>
                 </ul>
-                <a href="#" class="buy-btn">Buy Now</a>
+                <a href="#" class="buy-btn">立即加入</a>
               </div>
             </div><!-- End Pricing Item -->
 
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
               <div class="pricing-item">
-                <h3>Developer Plan</h3>
-                <h4><sup>$</sup>49<span> / month</span></h4>
+                <h3>高级计划</h3>
+                <h4><sup>¥</sup>499<span> / 夏令营</span></h4>
                 <ul>
-                  <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
-                  <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
-                  <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                  <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                  <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+                  <li><i class="bi bi-check"></i> <span>所有进阶功能</span></li>
+                  <li><i class="bi bi-check"></i> <span>VIP 活动参与与专属课程</span></li>
+                  <li><i class="bi bi-check"></i> <span>个性化活动推荐</span></li>
+                  <li><i class="bi bi-check"></i> <span>全程健康监测</span></li>
+                  <li><i class="bi bi-check"></i> <span>全天候专业客服支持</span></li>
                 </ul>
-                <a href="#" class="buy-btn">Buy Now</a>
+                <a href="#" class="buy-btn">立即加入</a>
               </div>
             </div><!-- End Pricing Item -->
+
 
           </div>
 
@@ -587,298 +695,166 @@
 
       </section><!-- /Pricing Section -->
 
-      <!-- Testimonials Section -->
-      <section id="testimonials" class="testimonials section">
 
-        <!-- Section Title -->
-        <div class="container section-title" data-aos="fade-up">
-          <h2>指导老师</h2>
-          <p>大连海事大学教授</p>
-        </div><!-- End Section Title -->
-
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-          <div class="swiper init-swiper">
-            <div class="swiper-wrapper">
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                  <h3>Saul Goodman</h3>
-                  <h4>Ceo &amp; Founder</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div><!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div><!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div><!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div><!-- End testimonial item -->
-
-              <div class="swiper-slide">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                      class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div><!-- End testimonial item -->
-
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-
-        </div>
-
-      </section><!-- /Testimonials Section -->
 
       <!-- Faq 2 Section -->
       <section id="faq-2" class="faq-2 section light-background">
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>Frequently Asked Questions</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-            consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
-            sit in iste officiis commodi quidem hic quas.</p>
+          <h2>常见问题解答</h2>
+          <p>我们汇总了一些关于夏令营管理系统的常见问题，帮助您更好地理解系统功能和操作流程。</p>
         </div><!-- End Section Title -->
 
         <div class="container">
-
           <div class="row justify-content-center">
-
             <div class="col-lg-10">
-
               <div class="faq-container">
 
                 <div class="faq-item faq-active" data-aos="fade-up" data-aos-delay="200">
                   <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>Non consectetur a erat nam at lectus urna duis?</h3>
+                  <h3>1. 如何注册和登录系统？</h3>
                   <div class="faq-content">
-                    <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet
-                      non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor
-                      purus non.</p>
+                    <p>点击“注册”按钮，填写个人信息完成注册。注册成功后，您可以使用您的用户名和密码进行登录。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
                   <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>Feugiat scelerisque varius morbi enim nunc faucibus a pellentesque?</h3>
+                  <h3>2. 报名夏令营活动的流程是什么？</h3>
                   <div class="faq-content">
-                    <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                      velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                      donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                      cursus turpis massa tincidunt dui.</p>
+                    <p>登录系统后，进入“活动报名”页面，选择您感兴趣的活动并提交报名表。提交后，您可以在“报名状态”页面查看审核进度。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
                   <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
+                  <h3>3. 如何查看和管理我的报名信息？</h3>
                   <div class="faq-content">
-                    <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus
-                      pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit.
-                      Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis
-                      tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
+                    <p>在个人中心中，您可以查看您的报名历史和当前活动报名状态。如需修改报名信息，请在活动开始前联系系统管理员。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
                   <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
+                  <h3>4. 审核未通过的原因有哪些？</h3>
                   <div class="faq-content">
-                    <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum
-                      velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend
-                      donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in
-                      cursus turpis massa tincidunt dui.</p>
+                    <p>审核未通过的原因可能包括信息填写不完整、未达到活动要求等。具体原因会在审核结果中显示，请按照提示修改并重新提交。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
                 <div class="faq-item" data-aos="fade-up" data-aos-delay="600">
                   <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>Tempus quam pellentesque nec nam aliquam sem et tortor consequat?</h3>
+                  <h3>5. 我可以取消已经提交的报名吗？</h3>
                   <div class="faq-content">
-                    <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in
-                      est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl
-                      suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
+                    <p>您可以在活动报名页面中取消已提交的申请，但在活动开始前的一定时间内不可取消，具体规定请参考每个活动的报名详情。</p>
                   </div>
                   <i class="faq-toggle bi bi-chevron-right"></i>
                 </div><!-- End Faq item-->
 
               </div>
-
             </div>
-
           </div>
-
         </div>
+
 
       </section><!-- /Faq 2 Section -->
 
-      <!-- Contact Section -->
+      <!-- 联系我们部分 -->
       <section id="contact" class="contact section">
 
-        <!-- Section Title -->
+        <!-- 部分标题 -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>Contact</h2>
-          <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-        </div><!-- End Section Title -->
+          <h2>联系我们</h2>
+          <p>如果您对夏令营系统有任何疑问或需求，欢迎通过以下方式联系我们。</p>
+        </div><!-- 结束部分标题 -->
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
-
           <div class="row gy-4">
 
+            <!-- 联系信息 -->
             <div class="col-lg-5">
-
               <div class="info-wrap">
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
                   <i class="bi bi-geo-alt flex-shrink-0"></i>
                   <div>
-                    <h3>Address</h3>
-                    <p>A108 Adam Street, New York, NY 535022</p>
+                    <h3>地址</h3>
+                    <p>辽宁省大连市大连海事大学</p>
                   </div>
-                </div><!-- End Info Item -->
+                </div><!-- 结束信息项 -->
 
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
                   <i class="bi bi-telephone flex-shrink-0"></i>
                   <div>
-                    <h3>Call Us</h3>
-                    <p>+1 5589 55488 55</p>
+                    <h3>联系电话</h3>
+                    <p>+86 155 5465 7267</p>
                   </div>
-                </div><!-- End Info Item -->
+                </div><!-- 结束信息项 -->
 
                 <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
                   <i class="bi bi-envelope flex-shrink-0"></i>
                   <div>
-                    <h3>Email Us</h3>
-                    <p>info@example.com</p>
+                    <h3>电子邮箱</h3>
+                    <p>mua@dlmu.edu.cn</p>
                   </div>
-                </div><!-- End Info Item -->
+                </div><!-- 结束信息项 -->
 
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
+                <!-- 地图嵌入 -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3106.358410516237!2d121.53156607687795!3d38.87004097172987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x358f6406d8a093ad%3A0xcdbd138d8453da8e!2z5aSn6L-e5rW35LqL5aSn5a2m!5e0!3m2!1szh-CN!2shk!4v1731371885009!5m2!1szh-CN!2shk"
                         frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen=""
-                        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        loading="lazy"></iframe>
               </div>
-            </div>
+            </div><!-- 结束联系信息 -->
 
+            <!-- 联系表单 -->
             <div class="col-lg-7">
               <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
                     data-aos-delay="200">
                 <div class="row gy-4">
 
                   <div class="col-md-6">
-                    <label for="name-field" class="pb-2">Your Name</label>
+                    <label for="name-field" class="pb-2">姓名</label>
                     <input type="text" name="name" id="name-field" class="form-control" required="">
                   </div>
 
                   <div class="col-md-6">
-                    <label for="email-field" class="pb-2">Your Email</label>
+                    <label for="email-field" class="pb-2">电子邮箱</label>
                     <input type="email" class="form-control" name="email" id="email-field" required="">
                   </div>
 
                   <div class="col-md-12">
-                    <label for="subject-field" class="pb-2">Subject</label>
+                    <label for="subject-field" class="pb-2">主题</label>
                     <input type="text" class="form-control" name="subject" id="subject-field" required="">
                   </div>
 
                   <div class="col-md-12">
-                    <label for="message-field" class="pb-2">Message</label>
-                    <textarea class="form-control" name="message" rows="10" id="message-field"
-                              required=""></textarea>
+                    <label for="message-field" class="pb-2">留言</label>
+                    <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
                   </div>
 
                   <div class="col-md-12 text-center">
-                    <div class="loading">Loading</div>
+                    <div class="loading">加载中</div>
                     <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                    <button type="submit">Send Message</button>
+                    <div class="sent-message">您的消息已发送，谢谢！</div>
+                    <button type="submit">发送信息</button>
                   </div>
 
                 </div>
               </form>
-            </div><!-- End Contact Form -->
+            </div><!-- 结束联系表单 -->
 
           </div>
-
         </div>
+      </section><!-- /联系我们部分 -->
 
-      </section><!-- /Contact Section -->
 
     </main>
     <!-- 使用 Footer 组件 -->
-    <Footer />
+    <Footer/>
   </div>
 </template>
 
@@ -952,7 +928,7 @@ export default {
     new Swiper('.swiper-2', this.swiperConfig2);
 
     // 初始化 AOS
-    AOS.init({ duration: 1000 });
+    AOS.init({duration: 1000});
   }
 };
 </script>

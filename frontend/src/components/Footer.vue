@@ -10,7 +10,7 @@
         <div class="row justify-content-center text-center">
           <div class="col-lg-6">
             <h4>加入我们的GitHub</h4>
-            <link>https://github.com/Mriris/PA-UIENet</link>
+            <link>https://github.com/Mriris/summer-camp-system.git</link>
           </div>
         </div>
       </div>
@@ -43,12 +43,13 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>我们的服务</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">图像增强</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">深度学习模型开发</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">数据处理</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">定制化解决方案</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">报名管理</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">活动安排</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">审核流程</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">信息发布</a></li>
           </ul>
         </div>
+
 
         <div class="col-lg-4 col-md-12">
           <h4>关注我们</h4>
