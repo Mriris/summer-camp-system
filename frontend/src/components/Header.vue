@@ -9,7 +9,7 @@
       <a href="index.html" class="logo d-flex align-items-center me-auto">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">mua</h1>
+        <h1 class="sitename">夏令营</h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
@@ -45,5 +45,9 @@ export default {
 };
 </script>
 <style scoped>
-
+.header {
+  margin-left: 250px; /* 偏移出侧边栏的宽度 */
+  width: calc(100% - 250px); /* 确保 header 充满可见宽度 */
+  z-index: 1050; /* 使 header 层级高于侧边栏 */
+}
 </style>

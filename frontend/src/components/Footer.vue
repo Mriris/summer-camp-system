@@ -11,7 +11,7 @@
       <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
           <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">夏令营</span>
+            <span class="sitename">mua</span>
           </a>
           <div class="footer-contact pt-3">
             <p>大连海事大学</p>
@@ -69,5 +69,15 @@ export default {
 };
 </script>
 <style scoped>
+/* 确保 Footer 与侧边栏不重叠 */
+.footer {
+  padding-left: 250px; /* 根据侧边栏宽度调整 */
+}
 
+@media (max-width: 991.98px) {
+  /* 在小屏幕上移除 padding，让 Footer 居中显示 */
+  .footer {
+    padding-left: 0;
+  }
+}
 </style>
