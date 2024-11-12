@@ -1,4 +1,3 @@
-// src/main/java/org/mua/model/User.java
 package org.mua.model;
 
 import jakarta.persistence.*;
@@ -20,15 +19,19 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(nullable = false, unique = true) // 确保身份证号唯一
+    private String idNumber;
+
     public User() {}
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, String email, String idNumber) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.idNumber = idNumber;
     }
 
-    // Getters and setters
+    // Getters and Setters for id, username, password, email, idNumber
     public Long getId() {
         return id;
     }
@@ -59,5 +62,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
     }
 }

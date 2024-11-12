@@ -1,14 +1,7 @@
-<script setup>
-
-</script>
-
 <template>
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
-
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="/" class="logo d-flex align-items-center me-auto">
         <h1 class="sitename">夏令营</h1>
       </a>
 
@@ -22,21 +15,23 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <!-- 判断用户是否已登录 -->
+      <!-- 判断用户是否已登录，已登录时显示用户名并链接到个人主页 -->
       <router-link v-if="username" class="btn-getstarted" to="/profile">{{ username }}</router-link>
       <router-link v-else class="btn-getstarted" to="/login">登录</router-link>
-
     </div>
   </header>
 </template>
+
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+
 export default {
   name: 'Header',
   setup() {
     const store = useStore();
-    const username = computed(() => store.state.username); // 获取用户名
+    // 计算属性动态获取用户名
+    const username = computed(() => store.state.username);
 
     return {
       username,
@@ -44,6 +39,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 .header {
   margin-left: 250px; /* 偏移出侧边栏的宽度 */

@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 
 export default createStore({
     state: {
-        username: '', // 存储用户名
+        username: null, // 用于存储登录后的用户名
     },
     mutations: {
         setUsername(state, username) {
@@ -12,8 +12,13 @@ export default createStore({
     },
     actions: {
         login({ commit }, username) {
-            // 假设在登录成功后调用此方法
             commit('setUsername', username);
         },
+        logout({ commit }) {
+            commit('setUsername', null);
+        },
+    },
+    getters: {
+        getUsername: (state) => state.username,
     },
 });

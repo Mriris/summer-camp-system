@@ -4,11 +4,24 @@
       <h3 class="text-center">用户登录</h3>
       <form @submit.prevent="login">
         <div class="form-floating mb-3">
-          <input v-model="username" id="inputUsername" class="form-control" placeholder="用户名" required />
-          <label for="inputUsername">用户名</label>
+          <input
+              v-model="emailOrIdNumber"
+              id="inputEmailOrIdNumber"
+              class="form-control"
+              placeholder="邮箱或身份证号"
+              required
+          />
+          <label for="inputEmailOrIdNumber">邮箱或身份证号</label>
         </div>
         <div class="form-floating mb-3">
-          <input v-model="password" id="inputPassword" type="password" class="form-control" placeholder="密码" required />
+          <input
+              v-model="password"
+              id="inputPassword"
+              type="password"
+              class="form-control"
+              placeholder="密码"
+              required
+          />
           <label for="inputPassword">密码</label>
         </div>
         <button class="btn btn-primary w-100" type="submit">登录</button>
@@ -36,7 +49,7 @@ export default {
   },
   data() {
     return {
-      username: '',
+      emailOrIdNumber: '',
       password: '',
       message: '',
     };
@@ -45,15 +58,15 @@ export default {
     async login() {
       try {
         const response = await axios.post('/users/login', {
-          username: this.username,
+          emailOrIdNumber: this.emailOrIdNumber,
           password: this.password,
         });
 
-        // 检查后端返回的状态码是否成功
-        if (response.status === 200) {
-          this.store.dispatch('login', this.username);
+        // 检查是否登录成功并获取用户名
+        if (response.status === 200 && response.data.username) {
+          const username = response.data.username;
+          this.store.dispatch('login', username);
           this.message = '登录成功！3秒后跳转...';
-          console.log('Login response:', response);
 
           // 3秒后跳转到 /CampApplication 页面
           setTimeout(() => {

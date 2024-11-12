@@ -1,4 +1,3 @@
-<!-- src/views/Register.vue -->
 <template>
   <div class="register-page bg-primary">
     <div class="container">
@@ -13,6 +12,10 @@
                 <div class="form-floating mb-3">
                   <input v-model="username" id="inputUsername" class="form-control" type="text" placeholder="输入您的用户名" required />
                   <label for="inputUsername">用户名</label>
+                </div>
+                <div class="form-floating mb-3">
+                  <input v-model="idNumber" id="inputIdNumber" class="form-control" type="text" placeholder="身份证号" required />
+                  <label for="inputIdNumber">身份证号</label>
                 </div>
                 <div class="form-floating mb-3">
                   <input v-model="email" id="inputEmail" class="form-control" type="email" placeholder="name@example.com" required />
@@ -30,7 +33,7 @@
                   <button class="btn btn-primary w-100" type="submit">创建账号</button>
                 </div>
               </form>
-              <p v-if="message" class="text-danger text-center mt-3">{{ message }}</p>
+              <p v-if="message" :class="messageClass" class="text-center mt-3">{{ message }}</p>
             </div>
             <div class="card-footer text-center py-3">
               <div class="small">
@@ -51,11 +54,13 @@ export default {
   name: 'Register',
   data() {
     return {
-      username: '', // 更改字段名为 username
+      username: '',
+      idNumber: '',
       email: '',
       password: '',
       passwordConfirm: '',
       message: '',
+      messageClass: 'text-danger',
     };
   },
   methods: {
@@ -63,25 +68,33 @@ export default {
       // 检查密码是否匹配
       if (this.password !== this.passwordConfirm) {
         this.message = '密码和确认密码不匹配';
+        this.messageClass = 'text-danger';
         return;
       }
 
       try {
         const response = await axios.post('/users/register', {
-          username: this.username, // 使用后端接受的字段名 username
+          username: this.username,
+          idNumber: this.idNumber,
           email: this.email,
           password: this.password,
         });
 
-        this.message = '注册成功！3秒后跳转至登录页面...';
+        if (response.status === 200) {
+          this.message = '注册成功！3秒后跳转至登录页面...';
+          this.messageClass = 'text-success';
 
-        // 3秒后跳转到登录页面
-        setTimeout(() => {
-          this.$router.push('/login');
-        }, 3000);
+          // 3秒后跳转到登录页面
+          setTimeout(() => {
+            this.$router.push('/login');
+          }, 3000);
+        } else {
+          this.message = '注册失败: 非预期的响应';
+        }
       } catch (error) {
         console.error('Registration error:', error);
-        this.message = '注册失败: ' + (error.response?.data?.message || '未知错误');
+        this.message = '注册失败: ' + (error.response?.data || '未知错误');
+        this.messageClass = 'text-danger';
       }
     },
   },
