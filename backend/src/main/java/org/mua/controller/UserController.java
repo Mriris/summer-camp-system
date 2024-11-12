@@ -36,8 +36,10 @@ public class UserController {
         System.out.println("Password: " + user.getPassword());
         boolean isValid = userService.validateUser(user.getUsername(), user.getPassword());
         if (isValid) {
+            System.out.println("登录成功");
             return ResponseEntity.ok("Login successful");
         } else {
+            System.out.println("登录失败");
             return ResponseEntity.status(401).body("Invalid username or password");
         }
     }

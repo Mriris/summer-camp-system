@@ -20,9 +20,20 @@
 
 <script>
 import axios from '../axiosInstance';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
   name: 'Login',
+  setup() {
+    const store = useStore();
+    const router = useRouter();
+
+    return {
+      store,
+      router,
+    };
+  },
   data() {
     return {
       username: '',
@@ -37,12 +48,20 @@ export default {
           username: this.username,
           password: this.password,
         });
-        this.message = '登录成功！3秒后跳转...';
-        console.log('Login response:', response);
-        // 3秒后跳转到 /CampApplication 页面
-        setTimeout(() => {
-          this.$router.push('/CampApplication');
-        }, 3000);
+
+        // 检查后端返回的状态码是否成功
+        if (response.status === 200) {
+          this.store.dispatch('login', this.username);
+          this.message = '登录成功！3秒后跳转...';
+          console.log('Login response:', response);
+
+          // 3秒后跳转到 /CampApplication 页面
+          setTimeout(() => {
+            this.router.push('/CampApplication');
+          }, 3000);
+        } else {
+          this.message = '登录失败: 非预期的响应';
+        }
       } catch (error) {
         console.error('Login error:', error);
         this.message = '登录失败: ' + (error.response?.data || '未知错误');
@@ -58,7 +77,7 @@ export default {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding-top: 80px; /* 调整顶部间距，避免被导航栏遮挡 */
+  padding-top: 80px;
   box-sizing: border-box;
   background-color: #f8f9fa;
 }

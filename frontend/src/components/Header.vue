@@ -14,24 +14,34 @@
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="#hero" class="active">主页</a></li>
+          <li><router-link to="/" exact-active-class="active">主页</router-link></li>
           <li><a href="#about">关于我们</a></li>
           <li><a href="#services">特点</a></li>
           <li><a href="#team">团队介绍</a></li>
-          <router-link to="/register">注册</router-link>
-          <router-link to="/login">登录</router-link>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="#about">登录</a>
+      <!-- 判断用户是否已登录 -->
+      <router-link v-if="username" class="btn-getstarted" to="/profile">{{ username }}</router-link>
+      <router-link v-else class="btn-getstarted" to="/login">登录</router-link>
 
     </div>
   </header>
 </template>
 <script>
+import { computed } from 'vue';
+import { useStore } from 'vuex';
 export default {
-  name: 'Header'
+  name: 'Header',
+  setup() {
+    const store = useStore();
+    const username = computed(() => store.state.username); // 获取用户名
+
+    return {
+      username,
+    };
+  },
 };
 </script>
 <style scoped>
