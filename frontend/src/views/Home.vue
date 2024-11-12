@@ -89,64 +89,53 @@
 
       </section><!-- /About Section -->
 
-      <!-- Why Us Section -->
-      <section id="why-us" class="section why-us light-background" data-builder="section">
+<!--      &lt;!&ndash; Why Us Section &ndash;&gt;-->
+<!--      <section id="why-us" class="section why-us light-background" data-builder="section">-->
 
-        <div class="container-fluid">
+<!--        <div class="container-fluid">-->
 
-          <div class="row gy-4">
+<!--          <div class="row gy-4">-->
 
-            <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">
+<!--            <div class="col-lg-7 d-flex flex-column justify-content-center order-2 order-lg-1">-->
 
-              <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">
-                <h3>夏令营管理解决方案</h3>
-                <p>
-                  我们的夏令营管理系统为学校和教育机构提供了全面的解决方案，从学生报名到活动安排，再到管理和反馈的各个环节，确保夏令营活动的高效和顺利开展。
-                </p>
-              </div>
+<!--              <div class="content px-xl-5" data-aos="fade-up" data-aos-delay="100">-->
+<!--                <h3>夏令营管理解决方案</h3>-->
+<!--                <p>-->
+<!--                  我们的夏令营管理系统为学校和教育机构提供了全面的解决方案，从学生报名到活动安排，再到管理和反馈的各个环节，确保夏令营活动的高效和顺利开展。-->
+<!--                </p>-->
+<!--              </div>-->
 
-              <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">
+<!--              <div class="faq-container px-xl-5" data-aos="fade-up" data-aos-delay="200">-->
+<!--                <div-->
+<!--                    v-for="(item, index) in faqs"-->
+<!--                    :key="index"-->
+<!--                    class="faq-item"-->
+<!--                    :class="{ 'faq-active': activeIndex === index }"-->
+<!--                >-->
+<!--                  <h3 @click="toggleFAQ(index)">-->
+<!--                    <span>{{ index + 1 }}</span> {{ item.question }}-->
+<!--                  </h3>-->
+<!--                  <div class="faq-content" v-if="activeIndex === index">-->
+<!--                    <p>{{ item.answer }}</p>-->
+<!--                  </div>-->
+<!--                  <i-->
+<!--                      class="faq-toggle bi"-->
+<!--                      :class="activeIndex === index ? 'bi-chevron-down' : 'bi-chevron-right'"-->
+<!--                      @click="toggleFAQ(index)"-->
+<!--                  ></i>-->
+<!--                </div>-->
+<!--              </div>-->
 
-                <div class="faq-item faq-active">
-                  <h3><span>01</span> 如何通过系统进行学生的在线报名？</h3>
-                  <div class="faq-content">
-                    <p>
-                      我们的系统支持在线报名功能。家长或学生可以在指定时间段内通过网络平台完成报名，填写个人信息、选择活动项目，并实时查看报名状态。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
+<!--            </div>-->
 
-                <div class="faq-item">
-                  <h3><span>02</span> 系统如何帮助安排和管理活动日程？</h3>
-                  <div class="faq-content">
-                    <p>
-                      系统提供智能化的活动日程安排功能，可以根据参与人数和活动需求进行分组安排。活动时间表和详细日程将会自动生成并发送给相关的学生和家长，确保活动顺利进行。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
+<!--            <div class="col-lg-5 order-1 order-lg-2 why-us-img">-->
+<!--              <img src="assets/img/why-us.png" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">-->
+<!--            </div>-->
+<!--          </div>-->
 
-                <div class="faq-item">
-                  <h3><span>03</span> 系统如何支持夏令营活动的数据分析和反馈收集？</h3>
-                  <div class="faq-content">
-                    <p>
-                      系统会自动记录活动的各项数据，包括参与人数、活动反馈、学生表现等。主办方可以查看这些数据，分析活动效果，并根据反馈优化未来的夏令营安排。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
+<!--        </div>-->
 
-
-              </div>
-
-            </div>
-
-            <div class="col-lg-5 order-1 order-lg-2 why-us-img">
-              <img src="assets/img/why-us.png" class="img-fluid" alt="" data-aos="zoom-in" data-aos-delay="100">
-            </div>
-          </div>
-
-        </div>
-
-      </section><!-- /Why Us Section -->
+<!--      </section>&lt;!&ndash; /Why Us Section &ndash;&gt;-->
 
       <!-- Skills Section -->
       <section id="skills" class="skills section">
@@ -439,7 +428,7 @@
 
           <!-- Section Title -->
           <div class="container section-title" data-aos="fade-up">
-            <h2>组长</h2>
+            <h2>开发团队</h2>
             <p>大连海事大学软件工程15组</p>
           </div><!-- End Section Title -->
 
@@ -450,14 +439,14 @@
 
                 <div class="swiper-slide">
                   <div class="testimonial-item">
-                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                    <h3>开发团队</h3>
-                    <h4>Ceo &amp; Founder</h4>
-                    <div class="stars">
-                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
-                        class="bi bi-star-fill"></i>
-                    </div>
+                    <img src="assets/img/testimonials/team1.jpg" class="testimonial-img" alt="">
+                    <h3>燕庭轩</h3>
+                    <h4>组长</h4>
+<!--                    <div class="stars">-->
+<!--                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i-->
+<!--                        class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i-->
+<!--                        class="bi bi-star-fill"></i>-->
+<!--                    </div>-->
                     <p>
                       <i class="bi bi-quote quote-icon-left"></i>
                       <span>负责项目整体管理与协调，确保项目按计划进展，拥有丰富的项目管理经验。</span>
@@ -558,7 +547,7 @@
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
               <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                <div class="pic"><img src="assets/img/team/team2.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
                   <h4>杨可心</h4>
                   <span>文档负责人</span>
@@ -575,7 +564,7 @@
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
               <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
+                <div class="pic"><img src="assets/img/team/team3.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
                   <h4>谭佳熙</h4>
                   <span>后端开发负责人</span>
@@ -592,7 +581,7 @@
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
               <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
+                <div class="pic"><img src="assets/img/team/team4.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
                   <h4>符镇侃</h4>
                   <span>数据库管理员</span>
@@ -609,7 +598,7 @@
 
             <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
               <div class="team-member d-flex align-items-start">
-                <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
+                <div class="pic"><img src="assets/img/team/team5.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
                   <h4>赵网</h4>
                   <span>前端开发工程师</span>
@@ -699,70 +688,36 @@
 
       <!-- Faq 2 Section -->
       <section id="faq-2" class="faq-2 section light-background">
-
-        <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>常见问题解答</h2>
           <p>我们汇总了一些关于夏令营管理系统的常见问题，帮助您更好地理解系统功能和操作流程。</p>
-        </div><!-- End Section Title -->
+        </div>
 
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-10">
               <div class="faq-container">
-
-                <div class="faq-item faq-active" data-aos="fade-up" data-aos-delay="200">
+                <div
+                    v-for="(faq, index) in faqs"
+                    :key="index"
+                    class="faq-item"
+                    :class="{ 'faq-active': activeIndex === index }"
+                    @click="toggleFAQ(index)"
+                    data-aos="fade-up"
+                    :data-aos-delay="200 + index * 100"
+                >
                   <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>1. 如何注册和登录系统？</h3>
-                  <div class="faq-content">
-                    <p>点击“注册”按钮，填写个人信息完成注册。注册成功后，您可以使用您的用户名和密码进行登录。</p>
+                  <h3>{{ faq.question }}</h3>
+                  <div class="faq-content" v-show="activeIndex === index">
+                    <p>{{ faq.answer }}</p>
                   </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="300">
-                  <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>2. 报名夏令营活动的流程是什么？</h3>
-                  <div class="faq-content">
-                    <p>登录系统后，进入“活动报名”页面，选择您感兴趣的活动并提交报名表。提交后，您可以在“报名状态”页面查看审核进度。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="400">
-                  <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>3. 如何查看和管理我的报名信息？</h3>
-                  <div class="faq-content">
-                    <p>在个人中心中，您可以查看您的报名历史和当前活动报名状态。如需修改报名信息，请在活动开始前联系系统管理员。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="500">
-                  <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>4. 审核未通过的原因有哪些？</h3>
-                  <div class="faq-content">
-                    <p>审核未通过的原因可能包括信息填写不完整、未达到活动要求等。具体原因会在审核结果中显示，请按照提示修改并重新提交。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
-
-                <div class="faq-item" data-aos="fade-up" data-aos-delay="600">
-                  <i class="faq-icon bi bi-question-circle"></i>
-                  <h3>5. 我可以取消已经提交的报名吗？</h3>
-                  <div class="faq-content">
-                    <p>您可以在活动报名页面中取消已提交的申请，但在活动开始前的一定时间内不可取消，具体规定请参考每个活动的报名详情。</p>
-                  </div>
-                  <i class="faq-toggle bi bi-chevron-right"></i>
-                </div><!-- End Faq item-->
-
+                  <i class="faq-toggle bi" :class="activeIndex === index ? 'bi-chevron-up' : 'bi-chevron-right'"></i>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
-
-      </section><!-- /Faq 2 Section -->
+      </section>
 
       <!-- 联系我们部分 -->
       <section id="contact" class="contact section">
@@ -866,6 +821,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'aos/dist/aos.css';
 
+
 export default {
   name: 'Home',
   data() {
@@ -917,8 +873,38 @@ export default {
           type: 'bullets',
           clickable: true
         }
-      }
+      },
+      activeIndex: null, // 用于跟踪当前展开的 FAQ 索引
+      faqs: [
+        {
+          question: "1. 如何注册和登录系统？",
+          answer: "点击“注册”按钮，填写个人信息完成注册。注册成功后，您可以使用您的用户名和密码进行登录。",
+        },
+        {
+          question: "2. 报名夏令营活动的流程是什么？",
+          answer: "登录系统后，进入“活动报名”页面，选择您感兴趣的活动并提交报名表。提交后，您可以在“报名状态”页面查看审核进度。",
+        },
+        {
+          question: "3. 如何查看和管理我的报名信息？",
+          answer: "在个人中心中，您可以查看您的报名历史和当前活动报名状态。如需修改报名信息，请在活动开始前联系系统管理员。",
+        },
+        {
+          question: "4. 审核未通过的原因有哪些？",
+          answer: "审核未通过的原因可能包括信息填写不完整、未达到活动要求等。具体原因会在审核结果中显示，请按照提示修改并重新提交。",
+        },
+        {
+          question: "5. 我可以取消已经提交的报名吗？",
+          answer: "您可以在活动报名页面中取消已提交的申请，但在活动开始前的一定时间内不可取消，具体规定请参考每个活动的报名详情。",
+        },
+      ],
     };
+  },
+  methods: {
+    // 切换 FAQ 展开和折叠状态
+    toggleFAQ(index) {
+      // 切换当前项的展开状态
+      this.activeIndex = this.activeIndex === index ? null : index;
+    },
   },
   mounted() {
     // 初始化第一个 swiper
@@ -933,7 +919,11 @@ export default {
 };
 </script>
 
-<style>
-/* 其它样式... */
+<style scoped>
+.faq-item {
+  cursor: pointer;
+}
+.faq-active .faq-content {
+  display: block;
+}
 </style>
-
