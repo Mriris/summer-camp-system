@@ -688,7 +688,7 @@
 
       <!-- Faq 2 Section -->
       <section id="faq-2" class="faq-2 section light-background">
-        <div class="container section-title" data-aos="fade-up">
+        <div class="container section-title">
           <h2>常见问题解答</h2>
           <p>我们汇总了一些关于夏令营管理系统的常见问题，帮助您更好地理解系统功能和操作流程。</p>
         </div>
@@ -699,17 +699,15 @@
               <div class="faq-container">
                 <div
                     v-for="(faq, index) in faqs"
-                    :key="activeIndex === index ? 'active' : index"
+                    :key="index"
                     class="faq-item"
                     :class="{ 'faq-active': activeIndex === index }"
                     @click="toggleFAQ(index)"
-                    data-aos="fade-up"
-                    :data-aos-delay="200 + index * 100"
                 >
-
-                <i class="faq-icon bi bi-question-circle"></i>
+                  <i class="faq-icon bi bi-question-circle"></i>
                   <h3>{{ faq.question }}</h3>
-                  <div class="faq-content" v-show="activeIndex === index">
+                  <!-- 添加过渡效果 -->
+                  <div class="faq-content" :class="{ 'is-open': activeIndex === index }">
                     <p>{{ faq.answer }}</p>
                   </div>
                   <i class="faq-toggle bi" :class="activeIndex === index ? 'bi-chevron-up' : 'bi-chevron-right'"></i>
@@ -934,10 +932,28 @@ export default {
 </script>
 
 <style scoped>
+/* FAQ 列表项样式 */
 .faq-item {
   cursor: pointer;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
-.faq-active .faq-content {
-  display: block;
+.faq-active {
+  background-color: #f9f9f9;
+}
+
+/* FAQ 内容动画 */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+.faq-content.is-open {
+  max-height: 300px; /* 根据内容的最大高度调整 */
+  opacity: 1;
 }
 </style>
