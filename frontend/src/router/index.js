@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
 import CampApplication from "@/views/CampApplication.vue";
+import Application from "@/views/Application.vue";
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -13,6 +14,11 @@ const routes = [
         path: "/CampApplication",
         name: "CampApplication",
         component: CampApplication,
+    },
+    {
+        path: "/Application",
+        name: "Application",
+        component: Application,
     },
 ];
 

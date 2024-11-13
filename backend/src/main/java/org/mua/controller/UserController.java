@@ -56,6 +56,7 @@ public class UserController {
             response.put("message", "登录成功");
             response.put("username", user.getUsername()); // 返回用户名
             response.put("role", String.valueOf(user.getRole()));  // 返回角色
+            response.put("id", String.valueOf(user.getId()));  // 返回id
 
             return ResponseEntity.ok(response);
         } else {

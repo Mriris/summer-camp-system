@@ -15,7 +15,7 @@
       </nav>
 
       <div class="auth-links" @mouseover="showAuthOptions = true" @mouseleave="showAuthOptions = false">
-        <router-link v-if="username" class="btn-getstarted" to="/profile">{{ username }}</router-link>
+        <router-link v-if="username" class="btn-getstarted" to="/CampApplication">{{ username }}</router-link>
         <router-link v-else class="btn-getstarted" to="/login">登录</router-link>
 
         <!-- 使用 transition 包裹悬停项以实现渐显动画 -->
