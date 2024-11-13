@@ -34,7 +34,7 @@ public class Application {
 
     // 枚举类型，用于报名状态
     public enum Status {
-        UNPAID, PENDING_REVIEW, APPROVED, REJECTED
+        UNPAID, PENDING, APPROVED, REJECTED
     }
 
     // Getters and Setters
