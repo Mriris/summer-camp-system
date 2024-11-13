@@ -75,4 +75,23 @@ public class ApplicationService {
         }
         throw new RuntimeException("未找到申请记录");
     }
+    public Application updateApplicationDetails(Long applicationId, Application updatedApplicationData) {
+        Optional<Application> applicationOpt = applicationRepository.findById(applicationId);
+        if (applicationOpt.isPresent()) {
+            Application existingApplication = applicationOpt.get();
+
+            // 更新学院、专业和导师信息
+            existingApplication.setCollegeId(updatedApplicationData.getCollegeId());
+            existingApplication.setMajorId(updatedApplicationData.getMajorId());
+            existingApplication.setAdvisorId(updatedApplicationData.getAdvisorId());
+
+            return applicationRepository.save(existingApplication);
+        }
+        throw new RuntimeException("未找到指定报名");
+    }
+
+    public Optional<Application> getApplicationByUserId(Long userId) {
+        return applicationRepository.findByUserId(userId);
+    }
+
 }

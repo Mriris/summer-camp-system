@@ -9,7 +9,8 @@
       <p><strong>身份证号:</strong> {{ userInfo.idNumber }}</p>
     </div>
 
-    <form @submit.prevent="submitApplication" class="application-form">
+    <!-- 报名信息表单 -->
+    <form @submit.prevent="handleSubmit" class="application-form" v-if="canApply || isModifiable">
       <!-- 选择学院 -->
       <div class="form-group">
         <label for="college">选择学院</label>
@@ -41,14 +42,21 @@
         </select>
       </div>
 
-      <!-- 提交按钮 -->
-      <button type="submit" class="btn-submit">提交报名</button>
+      <!-- 提交/修改按钮 -->
+      <button :disabled="!isModifiable" type="submit" class="btn-submit">
+        {{ isModifiable ? (hasApplied ? '修改报名' : '提交报名') : '不可修改' }}
+      </button>
 
       <!-- 提交结果信息 -->
       <p v-if="message" :class="{ 'text-success': isSuccess, 'text-danger': !isSuccess }">
         {{ message }}
       </p>
     </form>
+
+    <!-- 已报名且不可修改时显示的消息 -->
+    <p v-if="hasApplied && !isModifiable">
+      您的报名状态为 {{ application.status }}，无法修改。
+    </p>
   </div>
 </template>
 
@@ -63,6 +71,7 @@ export default {
         collegeId: null,
         majorId: null,
         advisorId: null,
+        status: 'UNPAID',
       },
       colleges: [],
       majors: [],
@@ -70,6 +79,9 @@ export default {
       message: '',
       isSuccess: false,
       userInfo: {}, // 用于存储用户的不可编辑信息
+      hasApplied: false, // 是否已报名
+      isModifiable: false, // 是否允许修改报名
+      canApply: true, // 是否可以报名
     };
   },
   methods: {
@@ -78,6 +90,7 @@ export default {
       try {
         const response = await axios.get(`/users/${userId}`);
         this.userInfo = response.data;
+        await this.checkApplicationStatus(); // 检查用户报名状态
       } catch (error) {
         console.error('无法获取用户信息', error);
       }
@@ -91,8 +104,6 @@ export default {
       }
     },
     async fetchMajors() {
-      this.application.majorId = null;
-      this.application.advisorId = null;
       try {
         const response = await axios.get(`/majors/college/${this.application.collegeId}`);
         this.majors = response.data;
@@ -102,7 +113,6 @@ export default {
       }
     },
     async fetchAdvisors() {
-      this.application.advisorId = null;
       try {
         const response = await axios.get(`/advisors/major/${this.application.majorId}`);
         this.advisors = response.data;
@@ -110,15 +120,51 @@ export default {
         console.error('无法获取导师数据', error);
       }
     },
-    async submitApplication() {
+    async checkApplicationStatus() {
+      const userId = localStorage.getItem('userId');
       try {
-        const userId = localStorage.getItem('userId');
-        const response = await axios.post(`/applications/submit?userId=${userId}`, this.application);
-        this.message = '报名成功！';
-        this.isSuccess = true;
+        // 获取用户的报名信息
+        const response = await axios.get(`/applications/user/${userId}`);
+        if (response.data) {
+          // 如果存在报名记录，填充表单
+          this.application = response.data;
+          this.hasApplied = true;
+          this.isModifiable = this.application.status === 'UNPAID';
+          this.canApply = false; // 禁止再次报名
+
+          // 输出报名信息到控制台
+          console.log("用户报名信息:", this.application);
+
+          // 填充报名信息，自动显示已报名的学院、专业和导师
+          await this.fetchColleges();
+          await this.fetchMajors();
+          await this.fetchAdvisors();
+        }
       } catch (error) {
-        console.error('报名失败', error);
-        this.message = '报名失败，请重试。';
+        console.error('未找到用户报名记录', error);
+        this.hasApplied = false;
+        this.isModifiable = true;
+      }
+    },
+    async handleSubmit() {
+      const userId = localStorage.getItem('userId');
+      // 判断是否已报名，根据结果使用不同的 API 路由
+      const url = `/applications/${this.hasApplied ? `update/${this.application.id}` : 'submit'}?userId=${userId}`;
+      try {
+        // 根据情况选择提交方式
+        if (this.hasApplied) {
+          await axios.patch(url, this.application);  // 使用 PATCH 进行更新
+          this.message = '报名信息已修改！';
+        } else {
+          await axios.post(url, this.application);   // 使用 POST 进行新报名
+          this.message = '报名成功！';
+        }
+
+        this.isSuccess = true;
+        this.isModifiable = this.application.status === 'UNPAID';
+      } catch (error) {
+        console.error('操作失败', error);
+        this.message = '操作失败，请重试。';
         this.isSuccess = false;
       }
     },
@@ -150,7 +196,7 @@ export default {
   margin-bottom: 15px;
   text-align: left;
   box-sizing: border-box;
-  border: 1px solid #ddd; /* 添加边框以与上部信息框一致 */
+  border: 1px solid #ddd;
 }
 
 .btn-submit {

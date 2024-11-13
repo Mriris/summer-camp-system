@@ -70,6 +70,26 @@ public class ApplicationController {
         System.out.println("未找到报名ID为 " + id + " 的报名信息");
         return ResponseEntity.notFound().build();
     }
+    /**
+     * 根据 userId 查询用户的报名信息
+     */
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<Application> getApplicationByUserId(@PathVariable Long userId) {
+        System.out.println("收到根据 userId 查询报名信息的请求，用户ID: " + userId);
+
+        Optional<Application> applicationOpt = applicationService.getApplicationByUserId(userId);
+        if (applicationOpt.isPresent()) {
+            Application application = applicationOpt.get();
+            System.out.println("查询成功，报名信息如下：");
+            System.out.println("用户ID: " + application.getUser().getId());
+            System.out.println("报名状态: " + application.getStatus());
+            System.out.println("报名日期: " + application.getApplicationDate());
+            return ResponseEntity.ok(application);
+        }
+
+        System.out.println("未找到用户ID为 " + userId + " 的报名信息");
+        return ResponseEntity.notFound().build();
+    }
 
     /**
      * 更新报名状态
@@ -89,4 +109,25 @@ public class ApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
+    /**
+     * 更新报名信息（如学院、专业、导师）
+     */
+    @PatchMapping("/update/{id}")
+    public ResponseEntity<Application> updateApplication(@PathVariable Long id, @RequestBody Application updatedApplicationData) {
+        System.out.println("收到报名信息更新请求：");
+        System.out.println("报名ID: " + id);
+        System.out.println("更新的学院号: " + updatedApplicationData.getCollegeId());
+        System.out.println("更新的专业号: " + updatedApplicationData.getMajorId());
+        System.out.println("更新的导师号: " + updatedApplicationData.getAdvisorId());
+
+        try {
+            Application updatedApplication = applicationService.updateApplicationDetails(id, updatedApplicationData);
+            System.out.println("报名信息更新成功，当前状态: " + updatedApplication.getStatus());
+            return ResponseEntity.ok(updatedApplication);
+        } catch (RuntimeException e) {
+            System.out.println("更新失败，未找到报名ID为 " + id + " 的报名信息");
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 }
