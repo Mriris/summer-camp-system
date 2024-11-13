@@ -30,4 +30,16 @@ CREATE TABLE enrolled_students (
                                    gender INT CHECK (gender IN (1, 2))   -- 性别：1为男，2为女
 );
 
+DROP TABLE applications;
+CREATE TABLE applications (
+                              id BIGINT AUTO_INCREMENT PRIMARY KEY,             -- 唯一报名ID
+                              user_id BIGINT NOT NULL,                          -- 报名用户的外键，关联 users 表
+                              application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 报名日期，默认为当前时间
+                              status ENUM('UNPAID', 'PENDING', 'APPROVED', 'REJECTED') DEFAULT 'UNPAID', -- 报名状态，默认未缴费
+                              college_id INT NOT NULL,                          -- 学院编号
+                              major_id INT NOT NULL,                            -- 专业编号
+                              advisor_id INT,                                   -- 意向导师编号，允许为空
+                              FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- 外键关联用户表，用户被删除则删除对应报名记录
+);
+
 

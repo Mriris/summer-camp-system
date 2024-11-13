@@ -22,23 +22,27 @@ public class UserService {
      * 注册用户并检查在籍学生身份、邮箱唯一性
      */
     public User registerUser(User user) {
-        // 检查在籍学生身份
         Optional<EnrolledStudent> enrolledStudent = enrolledStudentRepository.findByUsernameAndIdNumber(user.getUsername(), user.getIdNumber());
         if (enrolledStudent.isEmpty()) {
             throw new RuntimeException("用户不是在籍学生，无法注册");
         }
 
-        // 检查邮箱的唯一性
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new RuntimeException("邮箱已存在");
         }
 
-        // 检查用户名和身份证号的唯一性
         if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsByIdNumber(user.getIdNumber())) {
             throw new RuntimeException("用户名或身份证号已存在");
         }
 
         return userRepository.save(user);
+    }
+
+    /**
+     * 根据用户ID查找用户
+     */
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     /**
@@ -57,7 +61,6 @@ public class UserService {
             user = userRepository.findByIdNumber(emailOrIdNumber);
         }
 
-        // 检查用户是否存在并匹配密码
         if (user.isPresent() && password.equals(user.get().getPassword())) {
             return user.get();
         }
