@@ -39,7 +39,9 @@ CREATE TABLE applications (
                               college_id INT NOT NULL,                          -- 学院编号
                               major_id INT NOT NULL,                            -- 专业编号
                               advisor_id INT,                                   -- 意向导师编号，允许为空
+                              UNIQUE (user_id),                                 -- 设置 user_id 为唯一，防止重复报名
                               FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE -- 外键关联用户表，用户被删除则删除对应报名记录
 );
+
 
 

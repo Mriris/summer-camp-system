@@ -1,4 +1,3 @@
-// src/main/java/org/mua/service/ApplicationService.java
 package org.mua.service;
 
 import org.mua.model.Application;
@@ -16,9 +15,17 @@ public class ApplicationService {
     @Autowired
     private ApplicationRepository applicationRepository;
 
+    /**
+     * 提交新的报名，检查是否已存在相同用户的报名记录
+     */
     public Application submitApplication(Application application, User user) {
+        // 检查用户是否已报名
+        if (applicationRepository.existsByUser(user)) {
+            throw new RuntimeException("该用户已报名，不能重复报名");
+        }
+
         application.setUser(user);
-        application.setStatus(Application.Status.UNPAID);  // 默认设置为未缴费
+        application.setStatus(Application.Status.UNPAID);  // 默认状态为未缴费
         return applicationRepository.save(application);
     }
 
@@ -26,7 +33,7 @@ public class ApplicationService {
         return applicationRepository.findById(id);
     }
 
-    // 根据用户获取申请列表
+    // 获取用户的申请列表
     public List<Application> getApplicationsByUser(User user) {
         return applicationRepository.findByUser(user);
     }
@@ -38,6 +45,6 @@ public class ApplicationService {
             application.setStatus(status);
             return applicationRepository.save(application);
         }
-        throw new RuntimeException("Application not found");
+        throw new RuntimeException("未找到申请记录");
     }
 }

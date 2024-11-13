@@ -1,4 +1,3 @@
-// src/main/java/org/mua/repository/ApplicationRepository.java
 package org.mua.repository;
 
 import org.mua.model.Application;
@@ -9,4 +8,7 @@ import java.util.List;
 
 public interface ApplicationRepository extends JpaRepository<Application, Long> {
     List<Application> findByUser(User user);
+
+    // 新增此方法，用于检查用户是否已有报名记录
+    boolean existsByUser(User user);
 }
