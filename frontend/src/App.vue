@@ -32,7 +32,7 @@ export default {
   setup() {
     const route = useRoute();
     // 判断当前路由是否是 Home
-    const isHomePage = computed(() => route.name === 'Home'|| route.name === 'Login');
+    const isHomePage = computed(() => route.name === 'Home'|| route.name === 'Login'|| route.name === 'Register');
     return { isHomePage };
   }
 };
