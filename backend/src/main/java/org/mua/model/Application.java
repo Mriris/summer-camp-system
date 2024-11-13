@@ -24,13 +24,13 @@ public class Application {
     private Status status = Status.UNPAID;
 
     @Column(name = "college_id", nullable = false)
-    private Integer collegeId;
+    private Long collegeId;
 
     @Column(name = "major_id", nullable = false)
-    private Integer majorId;
+    private Long majorId;
 
     @Column(name = "advisor_id")
-    private Integer advisorId;
+    private Long advisorId;
 
     // 枚举类型，用于报名状态
     public enum Status {
@@ -71,27 +71,27 @@ public class Application {
         this.status = status;
     }
 
-    public Integer getCollegeId() {
+    public Long getCollegeId() {
         return collegeId;
     }
 
-    public void setCollegeId(Integer collegeId) {
+    public void setCollegeId(Long collegeId) {
         this.collegeId = collegeId;
     }
 
-    public Integer getMajorId() {
+    public Long getMajorId() {
         return majorId;
     }
 
-    public void setMajorId(Integer majorId) {
+    public void setMajorId(Long majorId) {
         this.majorId = majorId;
     }
 
-    public Integer getAdvisorId() {
+    public Long getAdvisorId() {
         return advisorId;
     }
 
-    public void setAdvisorId(Integer advisorId) {
+    public void setAdvisorId(Long advisorId) {
         this.advisorId = advisorId;
     }
 }
