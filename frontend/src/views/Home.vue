@@ -633,11 +633,39 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'aos/dist/aos.css';
+import { onMounted, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import { nextTick } from 'vue';
 
 
 export default {
   name: 'Home',
+  setup() {
+    const route = useRoute();
+
+    // 监听页面加载完的滚动
+    const scrollToHash = (hash) => {
+      if (hash) {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+    };
+
+    // 初次加载页面时检查哈希
+    onMounted(() => {
+      scrollToHash(route.hash);
+    });
+
+    // 监听路由变化
+    watch(
+        () => route.hash,
+        (newHash) => {
+          scrollToHash(newHash);
+        }
+    );
+  },
   data() {
     return {
       swiperConfig1: {

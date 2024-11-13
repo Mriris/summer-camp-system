@@ -8,9 +8,9 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><router-link to="/" exact-active-class="active">主页</router-link></li>
-          <li><a href="#about">关于我们</a></li>
-          <li><a href="#services">特点</a></li>
-          <li><a href="#team">团队介绍</a></li>
+          <!-- 修改 FAQ 链接为在点击时跳转到 Home.vue 的 #faq 区域 -->
+          <li><a href="#faq-2" @click.prevent="navigateToFaq">FAQ</a></li>
+          <li><a href="#contact" @click.prevent="navigateToContact">联系我们</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -25,13 +25,14 @@
 <script>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 export default {
   name: 'Header',
   setup() {
     const store = useStore();
     const route = useRoute();
+    const router = useRouter();
 
     // 计算属性动态获取用户名
     const username = computed(() => store.state.username);
@@ -41,10 +42,21 @@ export default {
       return ['Home', 'Login', 'Register'].includes(route.name);
     });
 
+    // 跳转到 Home.vue 的区域
+    const navigateToFaq = () => {
+      router.push({ name: 'Home', hash: '#faq-2'});
+    };
+    const navigateToContact = () => {
+      router.push({ name: 'Home', hash: '#contact'});
+    };
+
     return {
       username,
       isNoMarginPage,
+      navigateToFaq,
+      navigateToContact,  // 导出这个方法
     };
+
   },
 };
 </script>
