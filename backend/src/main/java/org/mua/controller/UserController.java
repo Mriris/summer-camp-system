@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -65,6 +66,22 @@ public class UserController {
             errorResponse.put("message", "邮箱或身份证号或密码无效");
 
             return ResponseEntity.status(401).body(errorResponse);
+        }
+    }
+
+    /**
+     * 根据用户ID获取用户信息
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        System.out.println("收到用户信息查询请求，用户ID: " + id);
+
+        Optional<User> userOpt = userService.findById(id);
+        if (userOpt.isPresent()) {
+            return ResponseEntity.ok(userOpt.get());
+        } else {
+            System.out.println("未找到ID为 " + id + " 的用户信息");
+            return ResponseEntity.notFound().build();
         }
     }
 }

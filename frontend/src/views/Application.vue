@@ -1,7 +1,15 @@
 <template>
   <div class="application-page">
     <h2>夏令营报名</h2>
-    <form @submit.prevent="submitApplication">
+
+    <!-- 显示用户基本信息 -->
+    <div class="user-info">
+      <p><strong>用户名:</strong> {{ userInfo.username }}</p>
+      <p><strong>邮箱:</strong> {{ userInfo.email }}</p>
+      <p><strong>身份证号:</strong> {{ userInfo.idNumber }}</p>
+    </div>
+
+    <form @submit.prevent="submitApplication" class="application-form">
       <!-- 选择学院 -->
       <div class="form-group">
         <label for="college">选择学院</label>
@@ -61,12 +69,22 @@ export default {
       advisors: [],
       message: '',
       isSuccess: false,
+      userInfo: {}, // 用于存储用户的不可编辑信息
     };
   },
   methods: {
+    async fetchUserInfo() {
+      const userId = localStorage.getItem('userId');
+      try {
+        const response = await axios.get(`/users/${userId}`);
+        this.userInfo = response.data;
+      } catch (error) {
+        console.error('无法获取用户信息', error);
+      }
+    },
     async fetchColleges() {
       try {
-        const response = await axios.get('/colleges/all');  // 更新为正确的URL
+        const response = await axios.get('/colleges/all');
         this.colleges = response.data;
       } catch (error) {
         console.error('无法获取学院数据', error);
@@ -94,7 +112,6 @@ export default {
     },
     async submitApplication() {
       try {
-        // 从 localStorage 获取 userId
         const userId = localStorage.getItem('userId');
         const response = await axios.post(`/applications/submit?userId=${userId}`, this.application);
         this.message = '报名成功！';
@@ -107,6 +124,7 @@ export default {
     },
   },
   mounted() {
+    this.fetchUserInfo();
     this.fetchColleges();
   },
 };
@@ -123,17 +141,22 @@ export default {
   text-align: center;
 }
 
-.form-group {
-  margin-bottom: 15px;
+.user-info, .form-group, .btn-submit {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
   width: 100%;
   max-width: 400px;
+  margin-bottom: 15px;
+  text-align: left;
+  box-sizing: border-box;
+  border: 1px solid #ddd; /* 添加边框以与上部信息框一致 */
 }
 
 .btn-submit {
-  margin-top: 10px;
-  padding: 10px 20px;
-  width: 100%;
-  max-width: 400px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .text-success {
