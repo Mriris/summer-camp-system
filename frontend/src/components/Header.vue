@@ -8,22 +8,30 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><router-link to="/" exact-active-class="active">主页</router-link></li>
-          <!-- 修改 FAQ 链接为在点击时跳转到 Home.vue 的 #faq 区域 -->
           <li><a href="#faq-2" @click.prevent="navigateToFaq">FAQ</a></li>
           <li><a href="#contact" @click.prevent="navigateToContact">联系我们</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <!-- 判断用户是否已登录，已登录时显示用户名并链接到个人主页 -->
-      <router-link v-if="username" class="btn-getstarted" to="/profile">{{ username }}</router-link>
-      <router-link v-else class="btn-getstarted" to="/login">登录</router-link>
+      <div class="auth-links" @mouseover="showAuthOptions = true" @mouseleave="showAuthOptions = false">
+        <router-link v-if="username" class="btn-getstarted" to="/profile">{{ username }}</router-link>
+        <router-link v-else class="btn-getstarted" to="/login">登录</router-link>
+
+        <!-- 使用 transition 包裹悬停项以实现渐显动画 -->
+        <transition name="fade-slide">
+          <div v-if="showAuthOptions" class="dropdown-options">
+            <router-link v-if="username" to="/" @click="logout">登出</router-link>
+            <router-link v-else to="/register">注册</router-link>
+          </div>
+        </transition>
+      </div>
     </div>
   </header>
 </template>
 
 <script>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -33,43 +41,76 @@ export default {
     const store = useStore();
     const route = useRoute();
     const router = useRouter();
+    const showAuthOptions = ref(false);
 
-    // 计算属性动态获取用户名
     const username = computed(() => store.state.username);
-
-    // 判断是否在需要无左边空隙的页面
     const isNoMarginPage = computed(() => {
       return ['Home', 'Login', 'Register'].includes(route.name);
     });
 
-    // 跳转到 Home.vue 的区域
     const navigateToFaq = () => {
-      router.push({ name: 'Home', hash: '#faq-2'});
+      router.push({ name: 'Home', hash: '#faq-2' });
     };
     const navigateToContact = () => {
-      router.push({ name: 'Home', hash: '#contact'});
+      router.push({ name: 'Home', hash: '#contact' });
+    };
+
+    const logout = () => {
+      store.dispatch('logout');
+      localStorage.removeItem('username');
+      router.push('/');
     };
 
     return {
       username,
       isNoMarginPage,
       navigateToFaq,
-      navigateToContact,  // 导出这个方法
+      navigateToContact,
+      showAuthOptions,
+      logout,
     };
-
   },
 };
 </script>
 
 <style scoped>
 .header {
-  margin-left: 250px; /* 偏移出侧边栏的宽度 */
-  width: calc(100% - 250px); /* 确保 header 充满可见宽度 */
-  z-index: 1050; /* 使 header 层级高于侧边栏 */
+  margin-left: 250px;
+  width: calc(100% - 250px);
+  z-index: 1050;
 }
 
 .header.no-margin-left {
-  margin-left: 0; /* 移除左边空隙 */
-  width: 100%; /* 充满整个宽度 */
+  margin-left: 0;
+  width: 100%;
+}
+
+.auth-links {
+  position: relative;
+}
+
+/* 动画效果：淡入和向上滑入 */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px); /* 初始状态向下位移 */
+}
+
+.dropdown-options {
+  position: absolute;
+  top: 100%;
+  left: 63%; /* 将位置向右移动 */
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  white-space: nowrap;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1051;
 }
 </style>

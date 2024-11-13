@@ -9,14 +9,16 @@ CREATE TABLE users (
                        email VARCHAR(100) NOT NULL UNIQUE,
                        password VARCHAR(255) NOT NULL,
                        id_number VARCHAR(18) UNIQUE NOT NULL, -- 身份证号，设为唯一值
-                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                       role INT DEFAULT 0 CHECK (role IN (0, 1, 2)) -- 角色字段：0为普通用户，1为学院负责人，2为学校管理员
 );
+
 
 -- 添加索引
 CREATE INDEX idx_username ON users(username);
 CREATE INDEX idx_email ON users(email);
 
-INSERT INTO users (username, email, password,id_number) VALUES ('mua', 'mua@dlmu.edu.cn', '12345678','000');
+INSERT INTO users (username, email, password,id_number,role) VALUES ('mua', 'mua@dlmu.edu.cn', '12345678','000',2);
 
 DROP TABLE enrolled_students;
 CREATE TABLE enrolled_students (

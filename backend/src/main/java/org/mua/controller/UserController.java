@@ -55,6 +55,7 @@ public class UserController {
             Map<String, String> response = new HashMap<>();
             response.put("message", "登录成功");
             response.put("username", user.getUsername()); // 返回用户名
+            response.put("role", String.valueOf(user.getRole()));  // 返回角色
 
             return ResponseEntity.ok(response);
         } else {

@@ -21,6 +21,8 @@ public class User {
 
     @Column(nullable = false, unique = true) // 确保身份证号唯一
     private String idNumber;
+    @Column(nullable = false)
+    private int role = 0;  // 新增字段，默认值为 0
 
     public User() {}
 
@@ -70,5 +72,12 @@ public class User {
 
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
+    }
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
     }
 }

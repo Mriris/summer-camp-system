@@ -62,16 +62,17 @@ export default {
           password: this.password,
         });
 
-        // 检查是否登录成功并获取用户名
         if (response.status === 200 && response.data.username) {
           const username = response.data.username;
-          this.store.dispatch('login', username);
-          this.message = '登录成功！3秒后跳转...';
 
-          // 3秒后跳转到 /CampApplication 页面
+          // 将用户名存储到 Vuex 和 localStorage
+          this.store.dispatch('login', username);
+
+          // 设置登录成功消息，并跳转
+          this.message = '登录成功！1秒后跳转...';
           setTimeout(() => {
             this.router.push('/CampApplication');
-          }, 3000);
+          }, 1000);
         } else {
           this.message = '登录失败: 非预期的响应';
         }
