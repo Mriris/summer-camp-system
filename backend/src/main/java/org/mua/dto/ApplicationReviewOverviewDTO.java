@@ -10,22 +10,21 @@ public class ApplicationReviewOverviewDTO {
     private String userName;
     private Long collegeId;
     private Long majorId;
-    private String status;
+    private Application.Status status;
     private Double score;  // 可为 null，表示未评分
     private ReviewResult.Grade grade;  // 可为 null，表示未评级
 
     // 构造函数，匹配查询返回的类型
-    public ApplicationReviewOverviewDTO(Application application, Double score, ReviewResult.Grade grade) {
-        this.applicationId = application.getId();
-        this.userId = application.getUser().getId();
-        this.userName = application.getUser().getUsername();
-        this.collegeId = application.getCollegeId();
-        this.majorId = application.getMajorId();
-        this.status = application.getStatus().toString();
+    public ApplicationReviewOverviewDTO(Long applicationId, Long userId, String userName, Long collegeId, Long majorId, Application.Status status, Double score, ReviewResult.Grade grade) {
+        this.applicationId = applicationId;
+        this.userId = userId;
+        this.userName = userName;
+        this.collegeId = collegeId;
+        this.majorId = majorId;
+        this.status = status;
         this.score = score;
         this.grade = grade;
     }
-
     // Getters and Setters
     public Long getApplicationId() {
         return applicationId;
@@ -67,11 +66,11 @@ public class ApplicationReviewOverviewDTO {
         this.majorId = majorId;
     }
 
-    public String getStatus() {
+    public Application.Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Application.Status status) {
         this.status = status;
     }
 

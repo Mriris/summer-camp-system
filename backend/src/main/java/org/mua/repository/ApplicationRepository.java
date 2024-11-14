@@ -22,17 +22,12 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
 
     List<Application> findByStatusNot(Application.Status status);
 
-    List<Application> findByStatusIn(List<Application.Status> statuses);
-    @Query("SELECT new org.mua.dto.ApplicationReviewOverviewDTO(a, r.score, r.grade) " +
+    @Query("SELECT new org.mua.dto.ApplicationReviewOverviewDTO(a.id as applicationId, a.user.id as userId, a.user.username as userName, a.collegeId, a.majorId, a.status as status, r.score as score, r.grade as grade) " +
             "FROM Application a " +
             "LEFT JOIN ReviewResult r ON a.id = r.applicationId " +
-            "WHERE a.collegeId = :collegeId " +
-            "AND (:status IS NULL OR a.status = :status) " +
-            "AND (:majorId IS NULL OR a.majorId = :majorId)")
-    List<ApplicationReviewOverviewDTO> findOverviewByDepartment(
-            @Param("collegeId") Long departmentId,
-            @Param("status") String status,
-            @Param("majorId") Long majorId
-    );
+            "WHERE a.collegeId = :collegeId")
+    List<ApplicationReviewOverviewDTO> findOverviewByDepartment(@Param("collegeId") Long collegeId);
 
+
+    List<Application> findByStatusIn(List<Application.Status> statuses);
 }

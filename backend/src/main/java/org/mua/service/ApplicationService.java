@@ -7,6 +7,8 @@ import org.mua.repository.ApplicationRepository;
 import org.mua.repository.CollegeRepository;
 import org.mua.repository.MajorRepository;
 import org.mua.repository.AdvisorRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,7 @@ import java.util.Optional;
 
 @Service
 public class ApplicationService {
+    private static final Logger logger = LoggerFactory.getLogger(ApplicationService.class);
 
     @Autowired
     private ApplicationRepository applicationRepository;
@@ -112,8 +115,31 @@ public class ApplicationService {
     public List<Application> getApplicationsByStatus(List<Application.Status> statuses) {
         return applicationRepository.findByStatusIn(statuses);
     }
-    public List<ApplicationReviewOverviewDTO> getDepartmentOverview(Long departmentId, String status, Long majorId) {
-        return applicationRepository.findOverviewByDepartment(departmentId, status, majorId);
+    /**
+     * 获取学院概览数据，包括应用程序的评分和状态信息。
+     */
+    public List<ApplicationReviewOverviewDTO> getDepartmentOverview(Long departmentId) {
+        logger.info("开始获取学院 ID 为 {} 的夏令营概览数据", departmentId);
+
+        List<ApplicationReviewOverviewDTO> overviewData = applicationRepository.findOverviewByDepartment(departmentId);
+
+        if (overviewData.isEmpty()) {
+            logger.warn("未找到学院 ID 为 {} 的相关申请数据", departmentId);
+        } else {
+            overviewData.forEach(dto -> {
+                logger.info("查询结果 - Application ID: {}, Major ID: {}, User ID: {}, Score: {}, Grade: {}",
+                        dto.getApplicationId(),
+                        dto.getMajorId(),
+                        dto.getUserId(),
+                        dto.getScore(),
+                        dto.getGrade());
+            });
+        }
+
+        return overviewData;
     }
 
+    public List<Application> getAllApplications() {
+        return applicationRepository.findAll();
+    }
 }

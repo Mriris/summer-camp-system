@@ -33,6 +33,16 @@ public class ApplicationController {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationController.class);
 
     /**
+     * 获取所有报名信息
+     */
+    @GetMapping("/list")
+    public ResponseEntity<List<Application>> getAllApplications() {
+        List<Application> applications = applicationService.getAllApplications();
+        return ResponseEntity.ok(applications);
+    }
+
+
+    /**
      * 提交新的报名信息，支持 multipart 表单数据
      */
     @PostMapping(value = "/submit", consumes = "multipart/form-data")
@@ -223,11 +233,11 @@ public class ApplicationController {
      */
     @GetMapping("/overview")
     public ResponseEntity<List<ApplicationReviewOverviewDTO>> getDepartmentOverview(
-            @RequestParam Long departmentId,
-            @RequestParam(required = false) String status,
-            @RequestParam(required = false) Long majorId) {
-
-        List<ApplicationReviewOverviewDTO> overviewData = applicationService.getDepartmentOverview(departmentId, status, majorId);
+            @RequestParam Long departmentId) {
+        logger.info("调用 getDepartmentOverview API，departmentId: " + departmentId);
+        List<ApplicationReviewOverviewDTO> overviewData = applicationService.getDepartmentOverview(departmentId);
+        logger.info("返回的概要数据: " + overviewData);
         return ResponseEntity.ok(overviewData);
     }
+
 }

@@ -36,7 +36,7 @@
         <template v-else-if="role === '2'">
           <a class="nav-link" href="/school-review">
             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
-            学校审核
+            优营评选
           </a>
           <a class="nav-link" href="/final-score">
             <div class="sb-nav-link-icon"><i class="fas fa-award"></i></div>

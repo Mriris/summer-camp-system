@@ -49,6 +49,7 @@ export default {
   data() {
     return {
       reviewResults: [],
+      applications: [], // 新增用于存储 Application 数据
       colleges: [],
       majors: [],
       departmentIdPrefix: null,
@@ -57,101 +58,128 @@ export default {
   },
   computed: {
     totalReviewResults() {
-      console.log("总评分条目计算中，总数为：", this.reviewResults.length); // 日志
+      console.log("计算总评分条目，总数为：", this.reviewResults.length);
       return this.reviewResults.length;
     },
     scoredResults() {
       const scoredCount = this.reviewResults.filter(result => result.score !== null).length;
-      console.log("已评分条目数为：", scoredCount); // 日志
+      console.log("已评分条目数为：", scoredCount);
       return scoredCount;
     },
     unscoredResults() {
       const unscoredCount = this.reviewResults.filter(result => result.score === null).length;
-      console.log("待评分条目数为：", unscoredCount); // 日志
+      console.log("待评分条目数为：", unscoredCount);
       return unscoredCount;
     },
     majorScoreData() {
+      console.log("开始计算各专业评分情况");
       const data = {};
-      this.reviewResults.forEach((result) => {
-        // 检查 application 和 majorId 是否存在
-        const majorId = result.application ? result.application.majorId : null;
-        if (!majorId) return;  // 跳过没有 majorId 的条目
 
-        const majorName = this.getMajorName(majorId);
-        if (!data[majorName]) {
-          data[majorName] = {count: 0, totalScore: 0};
-        }
-        data[majorName].count += 1;
-        if (result.score !== null) {
-          data[majorName].totalScore += result.score;
-        }
+      // 筛选出该学院所有的专业
+      const departmentMajors = this.majors.filter((major) => {
+        const isDepartmentMajor = major.college && major.college.id === this.departmentIdPrefix;
+        console.log(`专业 ${major.name} 是否属于该院系:`, isDepartmentMajor);
+        return isDepartmentMajor;
       });
 
-      // 计算平均分
-      Object.keys(data).forEach((major) => {
-        data[major].averageScore = data[major].count > 0 ? data[major].totalScore / data[major].count : 0;
-        console.log(`专业：${major}，评分条目：${data[major].count}，平均分：${data[major].averageScore}`); // 日志
+      // 构建 `applicationId` 到 `majorId` 的映射
+      const applicationToMajorMap = {};
+      this.applications.forEach(application => {
+        applicationToMajorMap[application.id] = application.majorId;
       });
+      console.log("Application 到 Major 的映射:", applicationToMajorMap);
+
+      // 构建专业评分统计
+      departmentMajors.forEach((major) => {
+        const majorName = major.name;
+        const relatedResults = this.reviewResults.filter(result => {
+          const majorId = applicationToMajorMap[result.applicationId];
+          return majorId === major.id;
+        });
+
+        console.log(`专业 ${majorName} 关联的评分条目数:`, relatedResults.length);
+
+        // 统计该专业的评分数据
+        const count = relatedResults.length;
+        const totalScore = relatedResults.reduce((sum, result) => sum + (result.score || 0), 0);
+        const averageScore = count > 0 ? totalScore / count : null;
+
+        data[majorName] = {
+          count,
+          averageScore
+        };
+        console.log(`专业 ${majorName} 的评分条目总数: ${count}, 平均分: ${averageScore}`);
+      });
+
+      console.log("各专业评分情况计算完成:", data);
       return data;
-    },
+    }
   },
   methods: {
     async fetchReviewResults() {
       try {
-        console.log("开始获取评分数据..."); // 日志
+        console.log("开始获取评分数据...");
         const response = await axios.get(`/review-results/collegeId`, {
-          params: {collegeId: this.departmentIdPrefix}
+          params: { collegeId: this.departmentIdPrefix }
         });
         this.reviewResults = response.data;
-        console.log("评分数据获取成功：", this.reviewResults);  // 检查数据结构
+        console.log("评分数据获取成功:", this.reviewResults);
       } catch (error) {
         console.error('获取评分数据失败', error);
       }
     },
+    async fetchApplications() {
+      try {
+        console.log("开始获取 Application 数据...");
+        const response = await axios.get('/applications/list');
+        this.applications = response.data;
+        console.log("Application 数据获取成功:", this.applications);
+      } catch (error) {
+        console.error('获取 Application 数据失败', error);
+      }
+    },
     async fetchCollegesAndMajors() {
       try {
-        console.log("开始获取学院和专业信息..."); // 日志
+        console.log("开始获取学院和专业信息...");
         const collegesResponse = await axios.get('/colleges/all');
         this.colleges = collegesResponse.data;
-        console.log("学院信息获取成功：", this.colleges); // 日志
+        console.log("学院信息获取成功:", this.colleges);
 
         const majorsResponse = await axios.get('/majors/all');
         this.majors = majorsResponse.data;
-        console.log("专业信息获取成功：", this.majors); // 日志
+        console.log("专业信息获取成功:", this.majors);
 
+        // 找到当前院系
         const department = this.colleges.find(
-            (c) => parseInt(c.id.toString().substring(0, 2)) === this.departmentIdPrefix
+            (c) => c.id === this.departmentIdPrefix
         );
         this.departmentName = department ? department.name : '未知院系';
-        console.log("当前院系名称：", this.departmentName); // 日志
+        console.log("当前院系名称:", this.departmentName);
       } catch (error) {
         console.error('获取学院和专业信息失败', error);
       }
     },
-    getMajorName(majorId) {
-      if (!majorId) return '未知专业';  // 确保 majorId 存在
-      const major = this.majors.find((m) => m.id === majorId);
-      console.log("获取专业名称：", major ? major.name : '未知专业'); // 日志
-      return major ? major.name : '未知专业';
-    },
   },
   async mounted() {
     const idNumber = localStorage.getItem('idNumber');
-    console.log("从 localStorage 获取的 idNumber:", idNumber); // 日志
+    console.log("从 localStorage 获取的 idNumber:", idNumber);
+
     if (idNumber && !isNaN(parseInt(idNumber.substring(0, 2)))) {
       this.departmentIdPrefix = parseInt(idNumber.substring(0, 2));
-      console.log("解析到的院系 ID 前缀：", this.departmentIdPrefix); // 日志
+      console.log("解析到的院系 ID 前缀:", this.departmentIdPrefix);
     } else {
       console.warn("idNumber 无效，无法获取院系 ID 前缀");
       this.departmentIdPrefix = null;
     }
 
     await this.fetchCollegesAndMajors();  // 确保专业信息已加载
-    await this.fetchReviewResults();       // 然后获取评分数据
+    await this.fetchApplications();       // 获取 Application 数据以建立映射
+    await this.fetchReviewResults();      // 然后获取评分数据
   }
-
 };
 </script>
+
+
 
 <style scoped>
 .camp-overview-page {
