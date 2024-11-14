@@ -131,11 +131,12 @@ CREATE TABLE applications (
                               FOREIGN KEY (advisor_id) REFERENCES advisors(id) ON DELETE SET NULL -- 关联导师表，导师被删除时设置为空
 );
 
+DROP TABLE review_result;
 CREATE TABLE review_result (
                                id BIGINT AUTO_INCREMENT PRIMARY KEY,
                                application_id BIGINT NOT NULL,
                                score DECIMAL(5, 2) NOT NULL,            -- 院系打的分数
-                               grade ENUM('Excellent', 'Pass', 'Fail') DEFAULT NULL,  -- 学校后续填入的成绩，默认为 NULL
+                               grade ENUM('EXCELLENT', 'PASS', 'FAIL') DEFAULT NULL,  -- 学校后续填入的成绩，默认为 NULL
                                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                                FOREIGN KEY (application_id) REFERENCES applications(id)
