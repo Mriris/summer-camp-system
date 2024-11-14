@@ -442,11 +442,10 @@
                 <h3>基础计划</h3>
                 <h4><sup>¥</sup>0<span> / 夏令营</span></h4>
                 <ul>
-                  <li><i class="bi bi-check"></i> <span>报名与基础信息管理</span></li>
+                  <li><i class="bi bi-check"></i> <span>报名与信息管理</span></li>
                   <li><i class="bi bi-check"></i> <span>课程与活动浏览</span></li>
-                  <li><i class="bi bi-check"></i> <span>简单的个人信息记录</span></li>
-                  <li class="na"><i class="bi bi-x"></i> <span>高级活动参与</span></li>
-                  <li class="na"><i class="bi bi-x"></i> <span>专属客服支持</span></li>
+                  <li class="na"><i class="bi bi-x"></i> <span>自助餐饮</span></li>
+                  <li class="na"><i class="bi bi-x"></i> <span>酒店住宿</span></li>
                 </ul>
                 <a href="#" class="buy-btn">立即加入</a>
               </div>
@@ -457,30 +456,15 @@
                 <h3>进阶计划</h3>
                 <h4><sup>¥</sup>299<span> / 夏令营</span></h4>
                 <ul>
-                  <li><i class="bi bi-check"></i> <span>所有基础功能</span></li>
-                  <li><i class="bi bi-check"></i> <span>活动参与优先权</span></li>
-                  <li><i class="bi bi-check"></i> <span>更多课程选择</span></li>
-                  <li><i class="bi bi-check"></i> <span>健康记录与报告</span></li>
-                  <li><i class="bi bi-check"></i> <span>专属客服支持</span></li>
+                  <li><i class="bi bi-check"></i> <span>报名与信息管理</span></li>
+                  <li><i class="bi bi-check"></i> <span>课程与活动浏览</span></li>
+                  <li><i class="bi bi-check"></i> <span>自助餐饮</span></li>
+                  <li><i class="bi bi-check"></i> <span>酒店住宿</span></li>
                 </ul>
                 <a href="#" class="buy-btn">立即加入</a>
               </div>
             </div><!-- End Pricing Item -->
 
-            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-              <div class="pricing-item">
-                <h3>高级计划</h3>
-                <h4><sup>¥</sup>499<span> / 夏令营</span></h4>
-                <ul>
-                  <li><i class="bi bi-check"></i> <span>所有进阶功能</span></li>
-                  <li><i class="bi bi-check"></i> <span>VIP 活动参与与专属课程</span></li>
-                  <li><i class="bi bi-check"></i> <span>个性化活动推荐</span></li>
-                  <li><i class="bi bi-check"></i> <span>全程健康监测</span></li>
-                  <li><i class="bi bi-check"></i> <span>全天候专业客服支持</span></li>
-                </ul>
-                <a href="#" class="buy-btn">立即加入</a>
-              </div>
-            </div><!-- End Pricing Item -->
 
 
           </div>
