@@ -1,6 +1,6 @@
 <template>
-  <div class="entry-review-page">
-    <h2>入营审核 - {{ departmentName }}</h2>
+  <div class="student-scoring-page">
+    <h2>学员评分 - {{ departmentName }}</h2>
 
     <!-- 筛选条件 -->
     <div class="filters">
@@ -15,20 +15,18 @@
       <label for="statusFilter">筛选状态：</label>
       <select id="statusFilter" v-model="selectedStatus">
         <option value="">全部</option>
-        <option value="PENDING">待审核</option>
         <option value="APPROVED">已通过</option>
-        <option value="REJECTED">已拒绝</option>
       </select>
     </div>
 
-    <!-- 学生列表表格 -->
+    <!-- 学生评分表格 -->
     <table class="table">
       <thead>
       <tr>
         <th>姓名</th>
         <th>邮箱</th>
         <th>申请专业</th>
-        <th>状态</th>
+        <th>评分</th>
         <th>操作</th>
       </tr>
       </thead>
@@ -37,11 +35,11 @@
         <td>{{ application.user.username }}</td>
         <td>{{ application.user.email }}</td>
         <td>{{ getMajorName(application.majorId) }}</td>
-        <td>{{ getStatusLabel(application.status) }}</td>
         <td>
-          <button @click="viewDetails(application.id)">查看详情</button>
-          <button @click="approveEntry(application.id)">通过</button>
-          <button @click="rejectEntry(application.id)">拒绝</button>
+          <input type="number" v-model="application.score" min="0" max="100" placeholder="输入分数" />
+        </td>
+        <td>
+          <button @click="submitScore(application.id, application.score)">提交评分</button>
         </td>
       </tr>
       </tbody>
@@ -58,16 +56,16 @@
 import axios from '../axiosInstance';
 
 export default {
-  name: 'EntryReview',
+  name: 'StudentScoring',
   data() {
     return {
-      pendingStudents: [],
+      approvedStudents: [],  // 存储所有已通过状态的学生
       colleges: [],
       majors: [],
       departmentIdPrefix: null,
       departmentName: '',
-      selectedMajor: '', // 当前选中的专业
-      selectedStatus: '', // 当前选中的状态
+      selectedMajor: '',     // 当前选中的专业
+      selectedStatus: 'APPROVED', // 当前选中的状态
       message: '',
       isSuccess: false
     };
@@ -75,43 +73,26 @@ export default {
   computed: {
     departmentMajors() {
       if (this.departmentIdPrefix && this.majors.length) {
-        // console.log("当前 departmentIdPrefix:", this.departmentIdPrefix); // 输出院系 ID 到控制台
-
-        return this.majors.filter((major) => {
-          // 检查 major.college 和 major.college.id 是否存在
-          if (!major.college || !major.college.id) {
-            // console.warn("major 缺少 college 或 college.id 属性:", major); // 输出缺少学院信息的专业
-            return false;
-          }
-          // console.log("正在检查 major.college.id:", major.college.id); // 输出每个专业的 college ID
-          return major.college.id === this.departmentIdPrefix; // 直接使用 major.college.id 进行匹配
-        });
+        return this.majors.filter((major) => major.college?.id === this.departmentIdPrefix);
       }
-      return []; // 如果条件不满足，返回空数组
+      return [];
     },
     filteredStudents() {
-      return this.pendingStudents.filter((student) => {
-        // 检查 collegeId 是否存在
+      return this.approvedStudents.filter((student) => {
         if (!student.collegeId) return false;
-
         const isMajorMatch = !this.selectedMajor || student.majorId === this.selectedMajor;
-        const isStatusMatch = !this.selectedStatus || student.status === this.selectedStatus;
-
-        return (
-            student.collegeId.toString().startsWith(this.departmentIdPrefix.toString()) &&
-            isMajorMatch &&
-            isStatusMatch
-        );
+        const isStatusMatch = student.status === this.selectedStatus;
+        return student.collegeId.toString().startsWith(this.departmentIdPrefix.toString()) && isMajorMatch && isStatusMatch;
       });
     }
   },
   methods: {
-    async fetchPendingStudents() {
+    async fetchApprovedStudents() {
       try {
-        const response = await axios.get('/applications/pending');
-        this.pendingStudents = response.data;
+        const response = await axios.get('/applications/approved');  // 获取已通过状态的学生
+        this.approvedStudents = response.data;
       } catch (error) {
-        console.error('获取待审核学生列表失败', error);
+        console.error('获取已通过学生列表失败', error);
       }
     },
     async fetchCollegesAndMajors() {
@@ -134,35 +115,13 @@ export default {
       const major = this.majors.find((m) => m.id === majorId);
       return major ? major.name : '未知专业';
     },
-    getStatusLabel(status) {
-      const statusMap = {
-        PENDING: '待审核',
-        APPROVED: '已通过',
-        REJECTED: '已拒绝'
-      };
-      return statusMap[status] || status;
-    },
-    viewDetails(studentId) {
-      this.$router.push({ name: 'StudentDetails', params: { id: studentId } });
-    },
-    async approveEntry(studentId) {
+    async submitScore(studentId, score) {
       try {
-        await axios.patch(`/applications/${studentId}/status`, null, { params: { status: 'APPROVED' } });
+        await axios.patch(`/applications/${studentId}/score`, { score });
+        this.message = '评分已提交';
         this.isSuccess = true;
-        this.fetchPendingStudents();
       } catch (error) {
-        console.error('通过审核失败', error);
-        this.message = '操作失败，请重试';
-        this.isSuccess = false;
-      }
-    },
-    async rejectEntry(studentId) {
-      try {
-        await axios.patch(`/applications/${studentId}/status`, null, { params: { status: 'REJECTED' } });
-        this.isSuccess = true;
-        this.fetchPendingStudents();
-      } catch (error) {
-        console.error('拒绝审核失败', error);
+        console.error('提交评分失败', error);
         this.message = '操作失败，请重试';
         this.isSuccess = false;
       }
@@ -170,23 +129,21 @@ export default {
   },
   mounted() {
     const idNumber = localStorage.getItem('idNumber');
-    console.log("从 localStorage 获取的 idNumber:", idNumber);
     if (idNumber && !isNaN(parseInt(idNumber.substring(0, 2)))) {
       this.departmentIdPrefix = parseInt(idNumber.substring(0, 2));
     } else {
       console.warn("idNumber 无效，无法获取院系 ID 前缀");
       this.departmentIdPrefix = null;
     }
-    console.log("当前登录者的院系 ID 前缀:", this.departmentIdPrefix);
 
-    this.fetchPendingStudents();
+    this.fetchApprovedStudents();
     this.fetchCollegesAndMajors();
   }
 };
 </script>
 
 <style scoped>
-.entry-review-page {
+.student-scoring-page {
   padding: 20px;
 }
 .filters {

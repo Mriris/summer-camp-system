@@ -75,8 +75,10 @@ public class ApplicationService {
         }
         throw new RuntimeException("未找到申请记录");
     }
-    public List<Application> getPendingApplications() {
-        return applicationRepository.findByStatus(Application.Status.PENDING);
+
+    public List<Application> getStatusNotApplications() {
+        return applicationRepository.findByStatusNot(Application.Status.UNPAID);
+//        return applicationRepository.findByStatus(Application.Status.PENDING);
     }
     /**
      * 更新报名详细信息，包括学院、专业、导师以及新增的详细字段

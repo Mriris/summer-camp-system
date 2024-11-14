@@ -6,7 +6,8 @@ import Login from '../views/Login.vue';
 import CampApplication from "@/views/CampApplication.vue";
 import Application from "@/views/Application.vue";
 import EntryReview from "@/views/EntryReview.vue";
-import StudentDetails from "@/views/StudentDetails.vue"; // 新增导入 EntryReview.vue
+import StudentDetails from "@/views/StudentDetails.vue";
+import StudentScoring from "@/views/StudentScoring.vue"; // 新增导入 EntryReview.vue
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -31,6 +32,11 @@ const routes = [
         path: '/student-details/:id',
         name: 'StudentDetails',
         component: StudentDetails,
+    },
+    {
+        path: '/StudentScoring',
+        name: 'StudentScoring',
+        component: StudentScoring,
     },
 ];
 

@@ -154,7 +154,7 @@ public class ApplicationController {
     // 获取所有待审核的申请
     @GetMapping("/pending")
     public ResponseEntity<List<Application>> getPendingApplications() {
-        List<Application> pendingApplications = applicationService.getPendingApplications();
+        List<Application> pendingApplications = applicationService.getStatusNotApplications();
         return ResponseEntity.ok(pendingApplications);
     }
     /**

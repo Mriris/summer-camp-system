@@ -22,7 +22,7 @@
             <div class="sb-nav-link-icon"><i class="fas fa-check-circle"></i></div>
             入营审核
           </a>
-          <a class="nav-link" href="/student-scoring">
+          <a class="nav-link" href="/StudentScoring">
             <div class="sb-nav-link-icon"><i class="fas fa-star"></i></div>
             学员评分
           </a>

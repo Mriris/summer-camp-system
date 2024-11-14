@@ -58,7 +58,8 @@ public class UserController {
             response.put("username", user.getUsername()); // 返回用户名
             response.put("role", String.valueOf(user.getRole()));  // 返回角色
             response.put("id", String.valueOf(user.getId()));  // 返回id
-
+            response.put("idNumber", String.valueOf(user.getIdNumber()));
+            System.out.println(user.getIdNumber());
             return ResponseEntity.ok(response);
         } else {
             System.out.println("登录失败");
