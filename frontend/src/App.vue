@@ -52,13 +52,20 @@ export default {
 }
 
 .main-content {
-  margin-left: 250px; /* 侧边栏宽度一致 */
+  margin-left: 250px; /* 与侧边栏宽度一致 */
   width: calc(100% - 250px); /* 内容宽度为页面宽度减去侧边栏宽度 */
+  padding-top: 100px; /* 增加顶部内边距，防止内容被顶部遮盖 */
+  padding-bottom: 150px; /* 增加底部内边距，防止内容被底部遮盖 */
 }
-/* 当页面是Home并且没有侧边栏时，移除左侧边距 */
+
+/* 当页面没有侧边栏时的样式 */
 .main-content.no-sidebar {
   margin-left: 0;
   width: 100%; /* 占据全宽 */
+  padding-top: 100px; /* 增加顶部内边距 */
+  padding-bottom: 150px; /* 增加底部内边距 */
 }
+
+
 
 </style>

@@ -1,4 +1,3 @@
-// src/main/java/org/mua/model/Application.java
 package org.mua.model;
 
 import jakarta.persistence.*;
@@ -32,13 +31,25 @@ public class Application {
     @Column(name = "advisor_id")
     private Long advisorId;
 
+    // 新增字段
+    @Column(name = "undergraduate_rank")
+    private Integer undergraduateRank;
+
+    @Column(name = "total_undergraduate_students")
+    private Integer totalUndergraduateStudents;
+
+    @Column(name = "awards", length = 500) // 将奖项字段设置为适当长度
+    private String awards;
+
+    @Column(name = "proof_pdf")
+    private String proofPdf;
+
     // 枚举类型，用于报名状态
     public enum Status {
         UNPAID, PENDING, APPROVED, REJECTED
     }
 
     // Getters and Setters
-
     public Long getId() {
         return id;
     }
@@ -93,5 +104,37 @@ public class Application {
 
     public void setAdvisorId(Long advisorId) {
         this.advisorId = advisorId;
+    }
+
+    public Integer getUndergraduateRank() {
+        return undergraduateRank;
+    }
+
+    public void setUndergraduateRank(Integer undergraduateRank) {
+        this.undergraduateRank = undergraduateRank;
+    }
+
+    public Integer getTotalUndergraduateStudents() {
+        return totalUndergraduateStudents;
+    }
+
+    public void setTotalUndergraduateStudents(Integer totalUndergraduateStudents) {
+        this.totalUndergraduateStudents = totalUndergraduateStudents;
+    }
+
+    public String getAwards() {
+        return awards;
+    }
+
+    public void setAwards(String awards) {
+        this.awards = awards;
+    }
+
+    public String getProofPdf() {
+        return proofPdf;
+    }
+
+    public void setProofPdf(String proofPdf) {
+        this.proofPdf = proofPdf;
     }
 }

@@ -51,7 +51,7 @@ public class ApplicationService {
             throw new RuntimeException("指定的导师与专业不匹配");
         }
 
-        // 设置其他默认字段
+        // 设置其他默认字段并添加新字段值
         application.setUser(user);
         application.setStatus(Application.Status.UNPAID);  // 默认状态为未缴费
         return applicationRepository.save(application);
@@ -75,6 +75,10 @@ public class ApplicationService {
         }
         throw new RuntimeException("未找到申请记录");
     }
+
+    /**
+     * 更新报名详细信息，包括学院、专业、导师以及新增的详细字段
+     */
     public Application updateApplicationDetails(Long applicationId, Application updatedApplicationData) {
         Optional<Application> applicationOpt = applicationRepository.findById(applicationId);
         if (applicationOpt.isPresent()) {
@@ -85,6 +89,12 @@ public class ApplicationService {
             existingApplication.setMajorId(updatedApplicationData.getMajorId());
             existingApplication.setAdvisorId(updatedApplicationData.getAdvisorId());
 
+            // 更新本科专业排名、人数、所获奖项和证明材料
+            existingApplication.setUndergraduateRank(updatedApplicationData.getUndergraduateRank());
+            existingApplication.setTotalUndergraduateStudents(updatedApplicationData.getTotalUndergraduateStudents());
+            existingApplication.setAwards(updatedApplicationData.getAwards());
+            existingApplication.setProofPdf(updatedApplicationData.getProofPdf());
+
             return applicationRepository.save(existingApplication);
         }
         throw new RuntimeException("未找到指定报名");
@@ -93,5 +103,4 @@ public class ApplicationService {
     public Optional<Application> getApplicationByUserId(Long userId) {
         return applicationRepository.findByUserId(userId);
     }
-
 }

@@ -41,7 +41,56 @@
           </option>
         </select>
       </div>
+      <!-- 本科专业排名 -->
+      <div class="form-group">
+        <label for="undergraduateRank">本科专业排名</label>
+        <input
+            type="number"
+            v-model="application.undergraduateRank"
+            id="undergraduateRank"
+            :disabled="!isModifiable"
+            placeholder="请输入本科专业排名"
+        />
+      </div>
 
+      <!-- 本科专业人数 -->
+      <div class="form-group">
+        <label for="totalUndergraduateStudents">本科专业人数</label>
+        <input
+            type="number"
+            v-model="application.totalUndergraduateStudents"
+            id="totalUndergraduateStudents"
+            :disabled="!isModifiable"
+            placeholder="请输入本科专业总人数"
+        />
+      </div>
+
+      <!-- 所获奖项 -->
+      <div class="form-group">
+        <label for="awards">所获奖项</label>
+        <textarea
+            v-model="application.awards"
+            id="awards"
+            :disabled="!isModifiable"
+            placeholder="请描述您获得的奖项"
+        ></textarea>
+      </div>
+
+      <!-- 证明材料PDF上传 -->
+      <div class="form-group">
+        <label for="proofPdf">证明材料上传 (PDF)</label>
+        <input
+            type="file"
+            @change="handleFileUpload"
+            id="proofPdf"
+            accept="application/pdf"
+            :disabled="!isModifiable"
+        />
+      </div>
+      <!-- 条件渲染的证明材料下载链接 -->
+      <div class="form-group" v-if="application.proofPdf">
+        <p><strong>已有证明材料:</strong> <a :href="application.proofPdf" target="_blank">下载PDF</a></p>
+      </div>
       <!-- 提交或修改按钮 -->
       <button :disabled="!isModifiable" type="submit" class="btn-submit">
         {{ isModifiable ? (hasApplied ? '修改报名' : '提交报名') : '不可修改' }}
@@ -60,6 +109,14 @@
         <p><strong>专业:</strong> {{ selectedMajor }}</p>
         <p><strong>导师:</strong> {{ selectedAdvisor || '无' }}</p>
         <p><strong>状态:</strong> {{ statusLabel }}</p>
+        <p><strong>本科专业排名:</strong> {{ application.undergraduateRank || '未填写' }}</p>
+        <p><strong>本科专业人数:</strong> {{ application.totalUndergraduateStudents || '未填写' }}</p>
+        <p><strong>所获奖项:</strong> {{ application.awards || '未填写' }}</p>
+        <!-- 条件渲染的证明材料下载链接 -->
+        <p v-if="application.proofPdf">
+          <strong>证明材料:</strong>
+          <a :href="application.proofPdf" target="_blank">下载PDF</a>
+        </p>
       </div>
       <div class="no-edit-warning">
         <h3>报名信息无法修改</h3>
@@ -80,6 +137,10 @@ export default {
         majorId: null,
         advisorId: null,
         status: 'UNPAID',
+        undergraduateRank: null,      // 本科专业排名
+        totalUndergraduateStudents: null, // 本科专业总人数
+        awards: '',                  // 所获奖项
+        proofPdf: null               // 证明材料 PDF 文件
       },
       colleges: [],
       majors: [],
@@ -97,18 +158,13 @@ export default {
   },
   computed: {
     statusLabel() {
-      switch (this.application.status) {
-        case 'UNPAID':
-          return '未缴费';
-        case 'PENDING':
-          return '待审核';
-        case 'APPROVED':
-          return '审核通过';
-        case 'REJECTED':
-          return '拒绝入营';
-        default:
-          return this.application.status;
-      }
+      const statusMap = {
+        UNPAID: '未缴费',
+        PENDING: '待审核',
+        APPROVED: '审核通过',
+        REJECTED: '拒绝入营'
+      };
+      return statusMap[this.application.status] || this.application.status;
     },
   },
   methods: {
@@ -162,6 +218,11 @@ export default {
           await this.fetchMajors();
           await this.fetchAdvisors();
           this.setReadOnlyInfo();
+
+          // 确保 `proofPdf` 是完整的 URL
+          if (this.application.proofPdf) {
+            this.application.proofPdf = `${this.application.proofPdf}`;
+          }
         }
       } catch (error) {
         console.error('未找到用户报名记录', error);
@@ -169,15 +230,53 @@ export default {
         this.isModifiable = true;
       }
     },
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+
+      // 检查是否选择了文件
+      if (!file) {
+        console.warn("没有选择文件");
+        this.application.proofPdf = null;
+        return;
+      }
+
+      const maxSize = 10 * 1024 * 1024; // 10MB
+
+      if (file.size <= maxSize && file.type === 'application/pdf') {
+        this.application.proofPdf = file;
+      } else if (file.size > maxSize) {
+        alert('文件大小超出限制，请上传不超过10MB的PDF文件');
+        this.application.proofPdf = null;
+      } else {
+        alert('请上传 PDF 文件格式的证明材料');
+        this.application.proofPdf = null;
+      }
+    },
     async handleSubmit() {
       const userId = localStorage.getItem('userId');
       const url = `/applications/${this.hasApplied ? `update/${this.application.id}` : 'submit'}?userId=${userId}`;
+
+      const formData = new FormData();
+
+      // 逐项添加 application 对象中的字段
+      formData.append('userId', userId);
+      formData.append("collegeId", this.application.collegeId);
+      formData.append("majorId", this.application.majorId);
+      formData.append("advisorId", this.application.advisorId || ""); // 可选字段
+      formData.append("undergraduateRank", this.application.undergraduateRank);
+      formData.append("totalUndergraduateStudents", this.application.totalUndergraduateStudents);
+      formData.append("awards", this.application.awards);
+      if (this.application.proofPdf) {
+        formData.append("proofPdf", this.application.proofPdf);
+      }
+
       try {
+        const config = { headers: { 'Content-Type': 'multipart/form-data' }};
         if (this.hasApplied) {
-          await axios.patch(url, this.application);
+          await axios.patch(url, formData, config);
           this.message = '报名信息已修改！';
         } else {
-          await axios.post(url, this.application);
+          await axios.post(url, formData, config);
           this.message = '报名成功！';
         }
         this.isSuccess = true;
@@ -201,11 +300,12 @@ export default {
 };
 </script>
 
+
 <style scoped>
 .application-page {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
   height: 100vh;
   padding: 20px;

@@ -112,17 +112,35 @@ INSERT INTO advisors (name, email, phone, major_id, title, office_location, crea
 
 
 CREATE TABLE applications (
-                              id BIGINT AUTO_INCREMENT PRIMARY KEY,             -- 唯一报名ID
-                              user_id BIGINT NOT NULL,                          -- 报名用户的外键，关联 users 表
-                              application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 报名日期，默认为当前时间
+                              id BIGINT AUTO_INCREMENT PRIMARY KEY,                    -- 唯一报名ID
+                              user_id BIGINT NOT NULL,                                 -- 报名用户的外键，关联 users 表
+                              application_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    -- 报名日期，默认为当前时间
                               status ENUM('UNPAID', 'PENDING', 'APPROVED', 'REJECTED') DEFAULT 'UNPAID', -- 报名状态，默认未缴费
-                              college_id BIGINT NOT NULL,                       -- 学院编号，外键关联 colleges 表
-                              major_id BIGINT NOT NULL,                         -- 专业编号，外键关联 majors 表
-                              advisor_id BIGINT,                                -- 意向导师编号，可为空，外键关联 advisors 表
-                              UNIQUE (user_id),                                 -- 设置 user_id 为唯一，防止重复报名
-                              FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,       -- 关联用户表，用户被删除则删除报名
+                              college_id BIGINT NOT NULL,                              -- 学院编号，外键关联 colleges 表
+                              major_id BIGINT NOT NULL,                                -- 专业编号，外键关联 majors 表
+                              advisor_id BIGINT,                                       -- 意向导师编号，可为空，外键关联 advisors 表
+                              undergraduate_rank INT,                                  -- 本科专业排名
+                              total_undergraduate_students INT,                        -- 本科专业总人数
+                              awards TEXT,                                             -- 本科所获奖项，作为一个文本字段来记录多个奖项
+                              proof_pdf VARCHAR(255),                                  -- 证明材料文件路径（PDF）
+
+                              UNIQUE (user_id),                                        -- 设置 user_id 为唯一，防止重复报名
+                              FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,      -- 外键关联用户表，用户被删除则删除报名
                               FOREIGN KEY (college_id) REFERENCES colleges(id) ON DELETE RESTRICT, -- 关联学院表，不允许删除有报名的学院
-                              FOREIGN KEY (major_id) REFERENCES majors(id) ON DELETE RESTRICT,    -- 关联专业表，不允许删除有报名的专业
-                              FOREIGN KEY (advisor_id) REFERENCES advisors(id) ON DELETE SET NULL  -- 关联导师表，导师被删除时设置为空
+                              FOREIGN KEY (major_id) REFERENCES majors(id) ON DELETE RESTRICT,   -- 关联专业表，不允许删除有报名的专业
+                              FOREIGN KEY (advisor_id) REFERENCES advisors(id) ON DELETE SET NULL -- 关联导师表，导师被删除时设置为空
 );
+
+CREATE TABLE review_result (
+                               id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                               application_id BIGINT NOT NULL,
+                               score DECIMAL(5, 2) NOT NULL,            -- 院系打的分数
+                               grade ENUM('Excellent', 'Pass', 'Fail') DEFAULT NULL,  -- 学校后续填入的成绩，默认为 NULL
+                               created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                               updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                               FOREIGN KEY (application_id) REFERENCES applications(id)
+);
+INSERT INTO review_result (application_id, score)
+VALUES
+    (4, 88.5);
 

@@ -13,7 +13,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // 禁用 CSRF 保护
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").permitAll() // 允许匿名访问注册和登录接口
+                        .requestMatchers("/**").permitAll() // 允许匿名访问注册和登录接口
                         .anyRequest().authenticated() // 其他请求需要认证
                 );
 
