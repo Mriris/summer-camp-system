@@ -158,6 +158,14 @@ public class ApplicationController {
         return ResponseEntity.ok(pendingApplications);
     }
     /**
+     * 根据状态查询申请
+     */
+    @GetMapping("/status")
+    public ResponseEntity<List<Application>> getApplicationsByStatus(@RequestParam List<Application.Status> statuses) {
+        List<Application> applications = applicationService.getApplicationsByStatus(statuses);
+        return ResponseEntity.ok(applications);
+    }
+    /**
      * 更新报名信息，包括学院、专业、导师、以及新增的报名详细信息
      */
     @PatchMapping(value = "/update/{id}", consumes = "multipart/form-data")

@@ -14,7 +14,7 @@ public class ReviewResult {
     @Column(name = "application_id", nullable = false)
     private Long applicationId;
 
-    @Column(name = "score", nullable = false)
+    @Column(name = "score")
     private Double score;
 
     @Enumerated(EnumType.STRING)

@@ -11,12 +11,6 @@
           {{ major.name }}
         </option>
       </select>
-
-      <label for="statusFilter">筛选状态：</label>
-      <select id="statusFilter" v-model="selectedStatus">
-        <option value="">全部</option>
-        <option value="APPROVED">已通过</option>
-      </select>
     </div>
 
     <!-- 学生评分表格 -->
@@ -36,7 +30,14 @@
         <td>{{ application.user.email }}</td>
         <td>{{ getMajorName(application.majorId) }}</td>
         <td>
-          <input type="number" v-model="application.score" min="0" max="100" placeholder="输入分数" />
+          <!-- 显示已有评分或默认输入框 -->
+          <input
+              type="number"
+              v-model="application.score"
+              :placeholder="application.score !== null ? '' : '分数'"
+              min="0"
+              max="100"
+          />
         </td>
         <td>
           <button @click="submitScore(application.id, application.score)">提交评分</button>
@@ -59,13 +60,12 @@ export default {
   name: 'StudentScoring',
   data() {
     return {
-      approvedStudents: [],  // 存储所有已通过状态的学生
+      approvedStudents: [],
       colleges: [],
       majors: [],
       departmentIdPrefix: null,
       departmentName: '',
-      selectedMajor: '',     // 当前选中的专业
-      selectedStatus: 'APPROVED', // 当前选中的状态
+      selectedMajor: '',
       message: '',
       isSuccess: false
     };
@@ -81,16 +81,42 @@ export default {
       return this.approvedStudents.filter((student) => {
         if (!student.collegeId) return false;
         const isMajorMatch = !this.selectedMajor || student.majorId === this.selectedMajor;
-        const isStatusMatch = student.status === this.selectedStatus;
-        return student.collegeId.toString().startsWith(this.departmentIdPrefix.toString()) && isMajorMatch && isStatusMatch;
+        return student.collegeId.toString().startsWith(this.departmentIdPrefix.toString()) && isMajorMatch;
       });
     }
   },
   methods: {
     async fetchApprovedStudents() {
       try {
-        const response = await axios.get('/applications/approved');  // 获取已通过状态的学生
-        this.approvedStudents = response.data;
+        const response = await axios.get('/applications/status', {
+          params: { statuses: 'APPROVED' }
+        });
+
+        console.log("获取的已通过学生数据：", response.data);  // 打印返回的学生数据
+
+        this.approvedStudents = await Promise.all(
+            response.data.map(async (student) => {
+              let score = null;
+              try {
+                // 请求获取该 Application 的 ReviewResult
+                const reviewResultResponse = await axios.get(`/review-results/application/${student.id}`);
+                const reviewResult = reviewResultResponse.data;
+
+                // 如果有 ReviewResult，则获取 score
+                if (reviewResult && reviewResult.length > 0) {
+                  score = reviewResult[0].score;  // 假设只需第一个评分记录
+                  console.log(`学生ID: ${student.id}, 评分: ${score}`);
+                }
+              } catch (err) {
+                console.warn(`无法获取学生ID ${student.id} 的评分数据`, err);
+              }
+
+              return {
+                ...student,
+                score: score
+              };
+            })
+        );
       } catch (error) {
         console.error('获取已通过学生列表失败', error);
       }
@@ -115,9 +141,14 @@ export default {
       const major = this.majors.find((m) => m.id === majorId);
       return major ? major.name : '未知专业';
     },
-    async submitScore(studentId, score) {
+    async submitScore(applicationId, score) {
+      if (score === null || score === '') {
+        this.message = '请输入有效分数';
+        this.isSuccess = false;
+        return;
+      }
       try {
-        await axios.patch(`/applications/${studentId}/score`, { score });
+        await axios.patch(`/review-results/application/${applicationId}/score`, {score});
         this.message = '评分已提交';
         this.isSuccess = true;
       } catch (error) {
@@ -146,24 +177,29 @@ export default {
 .student-scoring-page {
   padding: 20px;
 }
+
 .filters {
   display: flex;
   gap: 20px;
   margin-bottom: 20px;
 }
+
 .table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
 }
+
 .table th, .table td {
   padding: 8px;
   border: 1px solid #ddd;
   text-align: left;
 }
+
 .text-success {
   color: green;
 }
+
 .text-danger {
   color: red;
 }

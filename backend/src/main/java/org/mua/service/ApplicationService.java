@@ -107,4 +107,8 @@ public class ApplicationService {
     public Optional<Application> getApplicationByUserId(Long userId) {
         return applicationRepository.findByUserId(userId);
     }
+
+    public List<Application> getApplicationsByStatus(List<Application.Status> statuses) {
+        return applicationRepository.findByStatusIn(statuses);
+    }
 }

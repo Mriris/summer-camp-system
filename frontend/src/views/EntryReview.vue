@@ -147,11 +147,22 @@ export default {
     },
     async approveEntry(studentId) {
       try {
-        await axios.patch(`/applications/${studentId}/status`, null, { params: { status: 'APPROVED' } });
+        // 输出要发送的 studentId 到控制台
+        console.log("Sending request to approve student entry:", studentId);
+
+        // 审核通过请求
+        const statusResponse = await axios.patch(`/applications/${studentId}/status`, null, { params: { status: 'APPROVED' } });
+        console.log("Status update response:", statusResponse.data); // 输出状态更新的响应数据
+
+        // 创建评分条目的请求
+        const reviewResultResponse = await axios.post(`/review-results/application`, { applicationId: studentId });
+        console.log("Review result creation response:", reviewResultResponse.data); // 输出评分条目创建的响应数据
+
         this.isSuccess = true;
-        this.fetchPendingStudents();
+        this.message = '审核已通过，并创建评分条目';
+        this.fetchPendingStudents(); // 刷新列表
       } catch (error) {
-        console.error('通过审核失败', error);
+        console.error("Error during approval or review result creation:", error); // 输出错误信息到控制台
         this.message = '操作失败，请重试';
         this.isSuccess = false;
       }
