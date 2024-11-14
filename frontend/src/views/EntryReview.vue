@@ -40,8 +40,9 @@
         <td>{{ getStatusLabel(application.status) }}</td>
         <td>
           <button @click="viewDetails(application.id)">查看详情</button>
-          <button @click="approveEntry(application.id)">通过</button>
-          <button @click="rejectEntry(application.id)">拒绝</button>
+          <!-- 如果状态为已通过，禁用“通过”和“拒绝”按钮 -->
+          <button @click="approveEntry(application.id)" :disabled="application.status === 'APPROVED'">通过</button>
+          <button @click="rejectEntry(application.id)" :disabled="application.status === 'APPROVED'">拒绝</button>
         </td>
       </tr>
       </tbody>
@@ -75,23 +76,14 @@ export default {
   computed: {
     departmentMajors() {
       if (this.departmentIdPrefix && this.majors.length) {
-        // console.log("当前 departmentIdPrefix:", this.departmentIdPrefix); // 输出院系 ID 到控制台
-
         return this.majors.filter((major) => {
-          // 检查 major.college 和 major.college.id 是否存在
-          if (!major.college || !major.college.id) {
-            // console.warn("major 缺少 college 或 college.id 属性:", major); // 输出缺少学院信息的专业
-            return false;
-          }
-          // console.log("正在检查 major.college.id:", major.college.id); // 输出每个专业的 college ID
-          return major.college.id === this.departmentIdPrefix; // 直接使用 major.college.id 进行匹配
+          return major.college && major.college.id === this.departmentIdPrefix;
         });
       }
-      return []; // 如果条件不满足，返回空数组
+      return [];
     },
     filteredStudents() {
       return this.pendingStudents.filter((student) => {
-        // 检查 collegeId 是否存在
         if (!student.collegeId) return false;
 
         const isMajorMatch = !this.selectedMajor || student.majorId === this.selectedMajor;
@@ -147,22 +139,13 @@ export default {
     },
     async approveEntry(studentId) {
       try {
-        // 输出要发送的 studentId 到控制台
-        console.log("Sending request to approve student entry:", studentId);
-
-        // 审核通过请求
         const statusResponse = await axios.patch(`/applications/${studentId}/status`, null, { params: { status: 'APPROVED' } });
-        console.log("Status update response:", statusResponse.data); // 输出状态更新的响应数据
-
-        // 创建评分条目的请求
         const reviewResultResponse = await axios.post(`/review-results/application`, { applicationId: studentId });
-        console.log("Review result creation response:", reviewResultResponse.data); // 输出评分条目创建的响应数据
-
         this.isSuccess = true;
-        this.message = '审核已通过，并创建评分条目';
+        // this.message = '审核已通过，并创建评分条目';
         this.fetchPendingStudents(); // 刷新列表
       } catch (error) {
-        console.error("Error during approval or review result creation:", error); // 输出错误信息到控制台
+        console.error("Error during approval or review result creation:", error);
         this.message = '操作失败，请重试';
         this.isSuccess = false;
       }
@@ -181,14 +164,12 @@ export default {
   },
   mounted() {
     const idNumber = localStorage.getItem('idNumber');
-    console.log("从 localStorage 获取的 idNumber:", idNumber);
     if (idNumber && !isNaN(parseInt(idNumber.substring(0, 2)))) {
       this.departmentIdPrefix = parseInt(idNumber.substring(0, 2));
     } else {
       console.warn("idNumber 无效，无法获取院系 ID 前缀");
       this.departmentIdPrefix = null;
     }
-    console.log("当前登录者的院系 ID 前缀:", this.departmentIdPrefix);
 
     this.fetchPendingStudents();
     this.fetchCollegesAndMajors();

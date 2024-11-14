@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.mua.dto.ApplicationReviewOverviewDTO;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -217,5 +218,16 @@ public class ApplicationController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    /**
+     * 获取学院夏令营情况概览，带有状态、专业和评分信息
+     */
+    @GetMapping("/overview")
+    public ResponseEntity<List<ApplicationReviewOverviewDTO>> getDepartmentOverview(
+            @RequestParam Long departmentId,
+            @RequestParam(required = false) String status,
+            @RequestParam(required = false) Long majorId) {
 
+        List<ApplicationReviewOverviewDTO> overviewData = applicationService.getDepartmentOverview(departmentId, status, majorId);
+        return ResponseEntity.ok(overviewData);
+    }
 }

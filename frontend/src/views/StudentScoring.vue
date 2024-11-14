@@ -148,8 +148,10 @@ export default {
         return;
       }
       try {
-        await axios.patch(`/review-results/application/${applicationId}/score`, {score});
-        this.message = '评分已提交';
+        await axios.patch(`/review-results/${applicationId}/score`, null, {
+          params: { score }  // 使用 params 传递 score
+        });
+        // this.message = '评分已提交';
         this.isSuccess = true;
       } catch (error) {
         console.error('提交评分失败', error);

@@ -57,4 +57,9 @@ public class ReviewResultService {
         reviewResult.setApplicationId(applicationId);
         return reviewResultRepository.save(reviewResult);
     }
+
+    public List<ReviewResult> getReviewResultsByDepartment(long departmentIdPrefix) {
+        return reviewResultRepository.findByCollegeId(departmentIdPrefix);
+    }
+
 }

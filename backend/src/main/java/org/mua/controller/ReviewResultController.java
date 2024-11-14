@@ -12,8 +12,10 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/review-results")
+
 public class ReviewResultController {
     private static final Logger logger = LoggerFactory.getLogger(ReviewResultController.class);
 
@@ -75,5 +77,13 @@ public class ReviewResultController {
         List<ReviewResult> results = reviewResultService.getByApplicationId(applicationId);
         return ResponseEntity.ok(results);
     }
-
+    /**
+     * 获取特定院系的评分记录
+     */
+    @GetMapping("/collegeId")
+    public ResponseEntity<List<ReviewResult>> getReviewResultsByDepartment(@RequestParam long collegeId) {
+        logger.info("Fetching review results for department with ID prefix {}", collegeId);
+        List<ReviewResult> results = reviewResultService.getReviewResultsByDepartment(collegeId);
+        return ResponseEntity.ok(results);
+    }
 }

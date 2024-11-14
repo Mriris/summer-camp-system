@@ -26,9 +26,9 @@
             <div class="sb-nav-link-icon"><i class="fas fa-star"></i></div>
             学员评分
           </a>
-          <a class="nav-link" href="/camp-info">
+          <a class="nav-link" href="/CampOverview">
             <div class="sb-nav-link-icon"><i class="fas fa-info-circle"></i></div>
-            夏令营情况查询
+            学院情况查询
           </a>
         </template>
 

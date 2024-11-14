@@ -1,5 +1,6 @@
 package org.mua.service;
 
+import org.mua.dto.ApplicationReviewOverviewDTO;
 import org.mua.model.Application;
 import org.mua.model.User;
 import org.mua.repository.ApplicationRepository;
@@ -111,4 +112,8 @@ public class ApplicationService {
     public List<Application> getApplicationsByStatus(List<Application.Status> statuses) {
         return applicationRepository.findByStatusIn(statuses);
     }
+    public List<ApplicationReviewOverviewDTO> getDepartmentOverview(Long departmentId, String status, Long majorId) {
+        return applicationRepository.findOverviewByDepartment(departmentId, status, majorId);
+    }
+
 }
