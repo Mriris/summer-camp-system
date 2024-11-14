@@ -62,4 +62,14 @@ public class ReviewResultService {
         return reviewResultRepository.findByCollegeId(departmentIdPrefix);
     }
 
+    public ReviewResult updateGradeById(Long id, ReviewResult.Grade grade) {
+        ReviewResult result = reviewResultRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ReviewResult not found for id " + id));
+        result.setGrade(grade);
+        return reviewResultRepository.save(result);
+    }
+
+    public List<ReviewResult> getAllReviewResults() {
+        return reviewResultRepository.findAll();
+    }
 }

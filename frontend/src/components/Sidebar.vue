@@ -34,7 +34,7 @@
 
         <!-- 学校(2)的侧边栏内容 -->
         <template v-else-if="role === '2'">
-          <a class="nav-link" href="/school-review">
+          <a class="nav-link" href="/AwardSelection">
             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
             优营评选
           </a>

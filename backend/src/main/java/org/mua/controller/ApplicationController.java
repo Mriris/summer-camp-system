@@ -239,5 +239,19 @@ public class ApplicationController {
         logger.info("返回的概要数据: " + overviewData);
         return ResponseEntity.ok(overviewData);
     }
+    /**
+     * 根据 applicationId 获取 application 信息
+     */
+    @GetMapping("/detail/{applicationId}")
+    public ResponseEntity<Application> getApplicationById(@PathVariable Long applicationId) {
+        // 获取 Optional<Application> 对象
+        Optional<Application> applicationOpt = applicationService.getApplicationById(applicationId);
 
+        // 如果存在 Application 对象，返回它；否则返回 404
+        if (applicationOpt.isPresent()) {
+            return ResponseEntity.ok(applicationOpt.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

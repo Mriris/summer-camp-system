@@ -66,10 +66,21 @@ public class ReviewResultController {
     }
 
     @PatchMapping("/{id}/grade")
-    public ResponseEntity<ReviewResult> updateGrade(@PathVariable Long id, @RequestParam ReviewResult.Grade grade) {
-        ReviewResult updatedResult = reviewResultService.updateScore(id, grade.ordinal());
-        return ResponseEntity.ok(updatedResult);
+    public ResponseEntity<ReviewResult> updateGrade(@PathVariable Long id, @RequestParam String grade) {
+        try {
+            // 转换传入的 grade 字符串为 Enum 类型
+            ReviewResult.Grade gradeEnum = ReviewResult.Grade.valueOf(grade.toUpperCase());
+            ReviewResult updatedResult = reviewResultService.updateGradeById(id, gradeEnum);
+            return ResponseEntity.ok(updatedResult);
+        } catch (IllegalArgumentException e) {
+            logger.error("Invalid grade provided: {}", grade, e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        } catch (RuntimeException e) {
+            logger.error("Failed to update grade for id {}: {}", id, e.getMessage());
+            return ResponseEntity.notFound().build();
+        }
     }
+
 
     @GetMapping("/application/{applicationId}")
     public ResponseEntity<List<ReviewResult>> getByApplicationId(@PathVariable Long applicationId) {
@@ -86,4 +97,14 @@ public class ReviewResultController {
         List<ReviewResult> results = reviewResultService.getReviewResultsByDepartment(collegeId);
         return ResponseEntity.ok(results);
     }
+    /**
+     * 获取所有学生的评选记录
+     */
+    @GetMapping("/list")
+    public ResponseEntity<List<ReviewResult>> getAllReviewResults() {
+        logger.info("Fetching all review results for admin view.");
+        List<ReviewResult> results = reviewResultService.getAllReviewResults();
+        return ResponseEntity.ok(results);
+    }
+
 }
