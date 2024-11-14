@@ -1,244 +1,208 @@
 <template>
-  <div class="camp-summary-page">
-    <h2>夏令营总结</h2>
+  <div id="layoutSidenav">
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">夏令营总结</h1>
+          <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">学校管理员页面</li>
+          </ol>
+          <div class="row">
+            <div class="col-xl-3 col-md-6">
+              <div class="card bg-primary text-white mb-4">
+                <div class="card-body">总报名人数</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                  <span>100 人</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card bg-success text-white mb-4">
+                <div class="card-body">优营人数</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                  <span>75 人</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card bg-warning text-white mb-4">
+                <div class="card-body">待审核人数</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                  <span>15 人</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+              <div class="card bg-danger text-white mb-4">
+                <div class="card-body">未优营人数</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                  <span>10 人</span>
+                </div>
+              </div>
+            </div>
+          </div>
 
-    <!-- 总览统计 -->
-    <div class="overview-stats">
-      <div class="stat-box">
-        <h3>总评选学生数</h3>
-        <p>{{ totalStudents }}</p>
-      </div>
-      <div class="stat-box">
-        <h3>已评选学生数</h3>
-        <p>{{ evaluatedStudents }}</p>
-      </div>
-      <div class="stat-box">
-        <h3>未评选学生数</h3>
-        <p>{{ unEvaluatedStudents }}</p>
-      </div>
-    </div>
+          <!-- 专业分布图表 -->
+          <div class="row">
+            <div class="col-xl-6">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-chart-area me-1"></i>
+                  各专业报名情况
+                </div>
+                <div class="card-body"><canvas id="myAreaChart" width="100%" height="40"></canvas></div>
+              </div>
+            </div>
+            <div class="col-xl-6">
+              <div class="card mb-4">
+                <div class="card-header">
+                  <i class="fas fa-chart-bar me-1"></i>
+                  各专业优营率
+                </div>
+                <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+              </div>
+            </div>
+          </div>
 
-    <!-- 各专业评选情况 -->
-    <div class="major-distribution">
-      <h3>各专业评选情况</h3>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>专业</th>
-          <th>评选学生数</th>
-          <th>平均分</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(data, majorName) in majorScoreData" :key="majorName">
-          <td>{{ majorName }}</td>
-          <td>{{ data.count }}</td>
-          <td>{{ data.averageScore ? data.averageScore.toFixed(2) : '无评分' }}</td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- 各学院评分情况 -->
-    <div class="college-distribution">
-      <h3>各学院评分情况</h3>
-      <table class="table">
-        <thead>
-        <tr>
-          <th>学院</th>
-          <th>评选学生数</th>
-          <th>平均分</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="(data, collegeName) in collegeScoreData" :key="collegeName">
-          <td>{{ collegeName }}</td>
-          <td>{{ data.count }}</td>
-          <td>{{ data.averageScore ? data.averageScore.toFixed(2) : '无评分' }}</td>
-        </tr>
-        </tbody>
-      </table>
+          <!-- 报名人员列表 -->
+          <div class="card mb-4">
+            <div class="card-header">
+              <i class="fas fa-table me-1"></i>
+              报名人员名单
+            </div>
+            <div class="card-body">
+              <table id="datatablesSimple">
+                <thead>
+                <tr>
+                  <th>姓名</th>
+                  <th>专业</th>
+                  <th>学院</th>
+                  <th>报名日期</th>
+                  <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>张伟</td>
+                  <td>计算机科学与技术</td>
+                  <td>计算机学院</td>
+                  <td>2024/11/01</td>
+                  <td>优营</td>
+                </tr>
+                <tr>
+                  <td>王芳</td>
+                  <td>数据科学</td>
+                  <td>信息工程学院</td>
+                  <td>2024/11/02</td>
+                  <td>待审核</td>
+                </tr>
+                <tr>
+                  <td>李娜</td>
+                  <td>软件工程</td>
+                  <td>软件学院</td>
+                  <td>2024/11/03</td>
+                  <td>未优营</td>
+                </tr>
+                <tr>
+                  <td>赵强</td>
+                  <td>人工智能</td>
+                  <td>计算机学院</td>
+                  <td>2024/11/04</td>
+                  <td>优营</td>
+                </tr>
+                <tr>
+                  <td>刘洋</td>
+                  <td>市场营销</td>
+                  <td>商学院</td>
+                  <td>2024/11/05</td>
+                  <td>优营</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">mua 版权所有 &copy; 夏令营管理系统 2024</div>
+            <div>
+              <a href="#">隐私政策</a>
+              &middot;
+              <a href="#">条款和条件</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
 
 <script>
-import axios from '../axiosInstance';
+import Sidebar from '../components/Sidebar.vue';
 
 export default {
-  name: 'CampSummary',
-  data() {
-    return {
-      reviewResults: [],   // 评分数据
-      applications: [],    // 学生申请数据
-      colleges: [],        // 学院信息
-      majors: [],          // 专业信息
-      departmentIdPrefix: null,   // 院系前缀
-      departmentName: '',  // 院系名称
+  name: "CampOverviewComponent",
+  components: {
+    Sidebar
+  },
+  mounted() {
+    // 加载 DataTables 的脚本
+    const script = document.createElement("script");
+    script.src = "https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js";
+    script.onload = () => {
+      const table = document.getElementById('datatablesSimple');
+      if (table) {
+        new simpleDatatables.DataTable(table);
+      }
     };
-  },
-  computed: {
-    // 计算总评选学生数
-    totalStudents() {
-      return this.applications.length;
-    },
-    // 已评选学生数
-    evaluatedStudents() {
-      return this.reviewResults.filter(result => result.score !== null).length;
-    },
-    // 未评选学生数
-    unEvaluatedStudents() {
-      return this.reviewResults.filter(result => result.score === null).length;
-    },
-    // 各专业评分情况
-    majorScoreData() {
-      const data = {};
+    document.head.appendChild(script);
 
-      // 筛选出该学院所有的专业
-      const departmentMajors = this.majors.filter((major) => {
-        return major.college && major.college.id === this.departmentIdPrefix;
+    // 引入图表脚本
+    const chartScript = document.createElement("script");
+    chartScript.src = "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js";
+    chartScript.onload = () => {
+      // 模拟的报名情况数据
+      const ctx1 = document.getElementById('myAreaChart').getContext('2d');
+      new Chart(ctx1, {
+        type: 'line',
+        data: {
+          labels: ['计算机学院', '信息工程学院', '软件学院', '商学院'],
+          datasets: [{
+            label: '报名人数',
+            data: [30, 20, 25, 25],
+            borderColor: 'rgb(75, 192, 192)',
+            fill: false
+          }]
+        }
       });
 
-      // 构建 `applicationId` 到 `majorId` 的映射
-      const applicationToMajorMap = {};
-      this.applications.forEach(application => {
-        applicationToMajorMap[application.id] = application.majorId;
+      const ctx2 = document.getElementById('myBarChart').getContext('2d');
+      new Chart(ctx2, {
+        type: 'bar',
+        data: {
+          labels: ['计算机学院', '信息工程学院', '软件学院', '商学院'],
+          datasets: [{
+            label: '优营率 (%)',
+            data: [80, 70, 60, 75],
+            backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+            borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+            borderWidth: 1
+          }]
+        }
       });
-
-      // 构建专业评分统计
-      departmentMajors.forEach((major) => {
-        const majorName = major.name;
-        const relatedResults = this.reviewResults.filter(result => {
-          const majorId = applicationToMajorMap[result.applicationId];
-          return majorId === major.id;
-        });
-
-        const count = relatedResults.length;
-        const totalScore = relatedResults.reduce((sum, result) => sum + (result.score || 0), 0);
-        const averageScore = count > 0 ? totalScore / count : null;
-
-        data[majorName] = {
-          count,
-          averageScore
-        };
-      });
-
-      return data;
-    },
-    // 各学院评分情况
-    collegeScoreData() {
-      const data = {};
-
-      // 构建学院评分统计
-      this.colleges.forEach((college) => {
-        const collegeName = college.name;
-        const relatedResults = this.reviewResults.filter(result => {
-          const application = this.applications.find(app => app.id === result.applicationId);
-          return application && application.collegeId === college.id;
-        });
-
-        const count = relatedResults.length;
-        const totalScore = relatedResults.reduce((sum, result) => sum + (result.score || 0), 0);
-        const averageScore = count > 0 ? totalScore / count : null;
-
-        data[collegeName] = {
-          count,
-          averageScore
-        };
-      });
-
-      return data;
-    },
-  },
-  methods: {
-    // 获取评分数据
-    async fetchReviewResults() {
-      try {
-        const response = await axios.get('/review-results/collegeId', {
-          params: { collegeId: this.departmentIdPrefix }
-        });
-        this.reviewResults = response.data;
-      } catch (error) {
-        console.error('获取评分数据失败', error);
-      }
-    },
-    // 获取所有申请信息
-    async fetchApplications() {
-      try {
-        const response = await axios.get('/applications/list');
-        this.applications = response.data;
-      } catch (error) {
-        console.error('获取 Application 数据失败', error);
-      }
-    },
-    // 获取学院和专业信息
-    async fetchCollegesAndMajors() {
-      try {
-        const collegesResponse = await axios.get('/colleges/all');
-        this.colleges = collegesResponse.data;
-
-        const majorsResponse = await axios.get('/majors/all');
-        this.majors = majorsResponse.data;
-
-        // 设置当前院系
-        const department = this.colleges.find(c => c.id === this.departmentIdPrefix);
-        this.departmentName = department ? department.name : '未知院系';
-      } catch (error) {
-        console.error('获取学院和专业信息失败', error);
-      }
-    },
-  },
-  async mounted() {
-    const idNumber = localStorage.getItem('idNumber');
-    if (idNumber && !isNaN(parseInt(idNumber.substring(0, 2)))) {
-      this.departmentIdPrefix = parseInt(idNumber.substring(0, 2));
-    } else {
-      console.warn("idNumber 无效，无法获取院系 ID 前缀");
-      this.departmentIdPrefix = null;
-    }
-
-    await this.fetchCollegesAndMajors();  // 获取学院和专业信息
-    await this.fetchApplications();       // 获取申请数据
-    await this.fetchReviewResults();      // 获取评分数据
+    };
+    document.head.appendChild(chartScript);
   }
 };
 </script>
 
 <style scoped>
-.camp-summary-page {
+@import url("https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css");
+@import url("https://use.fontawesome.com/releases/v6.3.0/css/all.css");
+
+#layoutSidenav_content {
   padding: 20px;
-}
-
-.overview-stats {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-}
-
-.stat-box {
-  flex: 1;
-  min-width: 150px;
-  background-color: #f4f4f9;
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-.major-distribution,
-.college-distribution {
-  margin-top: 20px;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-.table th, .table td {
-  padding: 8px;
-  border: 1px solid #ddd;
-  text-align: left;
 }
 </style>

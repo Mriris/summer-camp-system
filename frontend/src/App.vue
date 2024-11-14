@@ -62,7 +62,7 @@ export default {
 .main-content.no-sidebar {
   margin-left: 0;
   width: 100%; /* 占据全宽 */
-  padding-top: 100px; /* 增加顶部内边距 */
+  padding-top: 85px; /* 增加顶部内边距 */
   padding-bottom: 150px; /* 增加底部内边距 */
 }
 

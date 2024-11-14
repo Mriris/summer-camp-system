@@ -1,6 +1,18 @@
 <template>
   <div class="student-scoring-page">
-    <h2>学员评分 - {{ departmentName }}</h2>
+    <h2 v-if="role === '2'">学员评分 - 全校视图</h2>
+    <h2 v-else>学员评分 - {{ departmentName }}</h2>
+
+    <!-- 学院选择器（仅在 role 为 2 时显示） -->
+    <div v-if="role === '2'" class="college-selector">
+      <label for="collegeSelect">选择学院：</label>
+      <select id="collegeSelect" v-model="selectedCollegeId" @change="selectCollege">
+        <option value="">请选择学院</option>
+        <option v-for="college in colleges" :key="college.id" :value="college.id">
+          {{ college.name }}
+        </option>
+      </select>
+    </div>
 
     <!-- 筛选条件 -->
     <div class="filters">
@@ -30,7 +42,6 @@
         <td>{{ application.user.email }}</td>
         <td>{{ getMajorName(application.majorId) }}</td>
         <td>
-          <!-- 显示已有评分或默认输入框 -->
           <input
               type="number"
               v-model="application.score"
@@ -66,22 +77,20 @@ export default {
       departmentIdPrefix: null,
       departmentName: '',
       selectedMajor: '',
+      selectedCollegeId: '', // 当前选中的学院 ID，仅在 role 为 2 时使用
       message: '',
-      isSuccess: false
+      isSuccess: false,
+      role: localStorage.getItem('role') // 获取角色信息
     };
   },
   computed: {
     departmentMajors() {
-      if (this.departmentIdPrefix && this.majors.length) {
-        return this.majors.filter((major) => major.college?.id === this.departmentIdPrefix);
-      }
-      return [];
+      return this.majors.filter(major => !this.selectedCollegeId || major.college?.id === this.selectedCollegeId);
     },
     filteredStudents() {
-      return this.approvedStudents.filter((student) => {
-        if (!student.collegeId) return false;
+      return this.approvedStudents.filter(student => {
         const isMajorMatch = !this.selectedMajor || student.majorId === this.selectedMajor;
-        return student.collegeId.toString().startsWith(this.departmentIdPrefix.toString()) && isMajorMatch;
+        return (!this.selectedCollegeId || student.collegeId === this.selectedCollegeId) && isMajorMatch;
       });
     }
   },
@@ -91,30 +100,19 @@ export default {
         const response = await axios.get('/applications/status', {
           params: { statuses: 'APPROVED' }
         });
-
-        console.log("获取的已通过学生数据：", response.data);  // 打印返回的学生数据
-
         this.approvedStudents = await Promise.all(
             response.data.map(async (student) => {
               let score = null;
               try {
-                // 请求获取该 Application 的 ReviewResult
                 const reviewResultResponse = await axios.get(`/review-results/application/${student.id}`);
                 const reviewResult = reviewResultResponse.data;
-
-                // 如果有 ReviewResult，则获取 score
                 if (reviewResult && reviewResult.length > 0) {
-                  score = reviewResult[0].score;  // 假设只需第一个评分记录
-                  console.log(`学生ID: ${student.id}, 评分: ${score}`);
+                  score = reviewResult[0].score;
                 }
               } catch (err) {
                 console.warn(`无法获取学生ID ${student.id} 的评分数据`, err);
               }
-
-              return {
-                ...student,
-                score: score
-              };
+              return { ...student, score: score };
             })
         );
       } catch (error) {
@@ -129,16 +127,27 @@ export default {
         const majorsResponse = await axios.get('/majors/all');
         this.majors = majorsResponse.data;
 
-        const department = this.colleges.find(
-            (c) => parseInt(c.id.toString().substring(0, 2)) === this.departmentIdPrefix
-        );
-        this.departmentName = department ? department.name : '未知院系';
+        if (this.role !== '2') {
+          const department = this.colleges.find(c => c.id === this.departmentIdPrefix);
+          this.departmentName = department ? department.name : '未知院系';
+        }
       } catch (error) {
         console.error('获取学院和专业信息失败', error);
       }
     },
+    selectCollege() {
+      if (this.selectedCollegeId) {
+        const selectedCollege = this.colleges.find(c => c.id === parseInt(this.selectedCollegeId));
+        this.departmentName = selectedCollege ? selectedCollege.name : '选择的学院';
+        this.departmentIdPrefix = parseInt(this.selectedCollegeId);
+      } else {
+        this.departmentName = '全校视图';
+        this.departmentIdPrefix = null;
+      }
+      this.fetchApprovedStudents();
+    },
     getMajorName(majorId) {
-      const major = this.majors.find((m) => m.id === majorId);
+      const major = this.majors.find(m => m.id === majorId);
       return major ? major.name : '未知专业';
     },
     async submitScore(applicationId, score) {
@@ -148,10 +157,7 @@ export default {
         return;
       }
       try {
-        await axios.patch(`/review-results/${applicationId}/score`, null, {
-          params: { score }  // 使用 params 传递 score
-        });
-        // this.message = '评分已提交';
+        await axios.patch(`/review-results/${applicationId}/score`, null, {params: {score}});
         this.isSuccess = true;
       } catch (error) {
         console.error('提交评分失败', error);
@@ -168,7 +174,6 @@ export default {
       console.warn("idNumber 无效，无法获取院系 ID 前缀");
       this.departmentIdPrefix = null;
     }
-
     this.fetchApprovedStudents();
     this.fetchCollegesAndMajors();
   }
@@ -183,6 +188,10 @@ export default {
 .filters {
   display: flex;
   gap: 20px;
+  margin-bottom: 20px;
+}
+
+.college-selector {
   margin-bottom: 20px;
 }
 

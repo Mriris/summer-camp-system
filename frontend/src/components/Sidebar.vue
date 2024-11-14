@@ -28,21 +28,31 @@
           </a>
           <a class="nav-link" href="/CampOverview">
             <div class="sb-nav-link-icon"><i class="fas fa-info-circle"></i></div>
-            学院情况查询
+            学院情况
           </a>
         </template>
 
-        <!-- 学校(2)的侧边栏内容 -->
+        <!-- 学校(2)的侧边栏内容，包括院系内容，添加分隔线 -->
         <template v-else-if="role === '2'">
+          <!-- 院系功能 -->
+          <a class="nav-link" href="/EntryReview">
+            <div class="sb-nav-link-icon"><i class="fas fa-check-circle"></i></div>
+            入营审核
+          </a>
+          <a class="nav-link" href="/StudentScoring">
+            <div class="sb-nav-link-icon"><i class="fas fa-star"></i></div>
+            学员评分
+          </a>
+
+          <!-- 分隔线 -->
+          <hr class="sidebar-divider">
+
+          <!-- 学校功能 -->
           <a class="nav-link" href="/AwardSelection">
             <div class="sb-nav-link-icon"><i class="fas fa-graduation-cap"></i></div>
             优营评选
           </a>
-          <a class="nav-link" href="/final-score">
-            <div class="sb-nav-link-icon"><i class="fas fa-award"></i></div>
-            评分汇总
-          </a>
-          <a class="nav-link" href="/camp-summary">
+          <a class="nav-link" href="/CampSummary">
             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
             夏令营总结
           </a>
@@ -52,7 +62,7 @@
 
     <div class="sb-sidenav-footer">
       <div class="small">当前登录用户：</div>
-      {{ username }} <!-- 可替换为动态用户名 -->
+      {{ username }}
     </div>
   </nav>
 </template>
@@ -62,7 +72,7 @@ export default {
   data() {
     return {
       role: localStorage.getItem("role"), // 获取角色
-      username: localStorage.getItem("username") // 可替换为实际的用户名
+      username: localStorage.getItem("username") // 获取用户名
     };
   }
 };
@@ -77,5 +87,10 @@ export default {
   left: 0;
   overflow-y: auto;
   z-index: 1000;
+}
+
+.sidebar-divider {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 10px 0;
 }
 </style>
