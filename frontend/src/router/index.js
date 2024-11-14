@@ -5,6 +5,8 @@ import Register from '../views/Register.vue';
 import Login from '../views/Login.vue';
 import CampApplication from "@/views/CampApplication.vue";
 import Application from "@/views/Application.vue";
+import EntryReview from "@/views/EntryReview.vue";
+import StudentDetails from "@/views/StudentDetails.vue"; // 新增导入 EntryReview.vue
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -19,6 +21,16 @@ const routes = [
         path: "/Application",
         name: "Application",
         component: Application,
+    },
+    {
+        path: "/EntryReview", // 新增路由路径
+        name: "EntryReview", // 路由名称
+        component: EntryReview, // 关联 EntryReview 组件
+    },
+    {
+        path: '/student-details/:id',
+        name: 'StudentDetails',
+        component: StudentDetails,
     },
 ];
 

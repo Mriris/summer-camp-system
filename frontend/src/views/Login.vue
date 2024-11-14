@@ -65,9 +65,12 @@ export default {
         if (response.status === 200 && response.data.username) {
           const username = response.data.username;
           const userId = response.data.id;
+          const role = response.data.role;
           // 将用户名存储到 Vuex 和 localStorage
           this.store.dispatch('login', username);
+          localStorage.setItem('username', username);
           localStorage.setItem('userId', userId);
+          localStorage.setItem('role', role);
           // 设置登录成功消息，并跳转
           this.message = '登录成功！1秒后跳转...';
           setTimeout(() => {

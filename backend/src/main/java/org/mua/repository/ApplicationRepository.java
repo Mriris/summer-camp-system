@@ -14,4 +14,6 @@ public interface ApplicationRepository extends JpaRepository<Application, Long> 
     boolean existsByUser(User user);
 
     Optional<Application> findByUserId(Long userId);
+
+    List<Application> findByStatus(Application.Status status);
 }

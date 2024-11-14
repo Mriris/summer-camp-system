@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -150,7 +151,12 @@ public class ApplicationController {
             return ResponseEntity.notFound().build();
         }
     }
-
+    // 获取所有待审核的申请
+    @GetMapping("/pending")
+    public ResponseEntity<List<Application>> getPendingApplications() {
+        List<Application> pendingApplications = applicationService.getPendingApplications();
+        return ResponseEntity.ok(pendingApplications);
+    }
     /**
      * 更新报名信息，包括学院、专业、导师、以及新增的报名详细信息
      */

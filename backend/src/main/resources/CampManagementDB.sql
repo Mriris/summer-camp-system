@@ -19,6 +19,7 @@ CREATE INDEX idx_username ON users(username);
 CREATE INDEX idx_email ON users(email);
 
 INSERT INTO users (username, email, password,id_number,role) VALUES ('mua', 'mua@dlmu.edu.cn', '12345678','000',2);
+INSERT INTO users (username, email, password,id_number,role) VALUES ('teacher', 'teacher@dlmu.edu.cn', '12345678','001',1);
 
 DROP TABLE enrolled_students;
 CREATE TABLE enrolled_students (

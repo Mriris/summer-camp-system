@@ -23,7 +23,7 @@ public class ReviewResultController {
 
     @PatchMapping("/{id}/grade")
     public ResponseEntity<ReviewResult> updateGrade(@PathVariable Long id, @RequestParam ReviewResult.Grade grade) {
-        ReviewResult updatedResult = reviewResultService.updateGrade(id, grade);
+        ReviewResult updatedResult = reviewResultService.updateGrade(id, grade.ordinal());
         return ResponseEntity.ok(updatedResult);
     }
 

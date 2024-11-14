@@ -13,16 +13,20 @@ public class ReviewResultService {
     @Autowired
     private ReviewResultRepository reviewResultRepository;
 
+    // 保存评分
     public ReviewResult saveReviewResult(ReviewResult reviewResult) {
         return reviewResultRepository.save(reviewResult);
     }
 
-    public ReviewResult updateGrade(Long id, ReviewResult.Grade grade) {
-        ReviewResult reviewResult = reviewResultRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
-        reviewResult.setGrade(grade);
+    // 更新评分
+    public ReviewResult updateGrade(Long id, double score) {
+        ReviewResult reviewResult = reviewResultRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("ReviewResult not found"));
+        reviewResult.setScore(score);
         return reviewResultRepository.save(reviewResult);
     }
 
+    // 根据申请ID获取评分
     public List<ReviewResult> getByApplicationId(Long applicationId) {
         return reviewResultRepository.findByApplicationId(applicationId);
     }
