@@ -10,7 +10,8 @@ import StudentDetails from "@/views/StudentDetails.vue";
 import StudentScoring from "@/views/StudentScoring.vue";
 import CampOverview from "@/views/CampOverview.vue";
 import AwardSelection from "@/views/AwardSelection.vue";
-import CampSummary from "@/views/CampSummary.vue"; // 新增导入 EntryReview.vue
+import CampSummary from "@/views/CampSummary.vue";
+import GradeQuery from "@/views/GradeQuery.vue"; // 新增导入 EntryReview.vue
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -55,6 +56,11 @@ const routes = [
         path: '/CampSummary',
         name: 'CampSummary',
         component: CampSummary,
+    },
+    {
+        path: '/GradeQuery',
+        name: 'GradeQuery',
+        component: GradeQuery,
     },
 ];
 

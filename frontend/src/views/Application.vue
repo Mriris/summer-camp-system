@@ -161,7 +161,7 @@ export default {
       const statusMap = {
         UNPAID: '未缴费',
         PENDING: '待审核',
-        APPROVED: '审核通过',
+        APPROVED: '允许入营',
         REJECTED: '拒绝入营'
       };
       return statusMap[this.application.status] || this.application.status;

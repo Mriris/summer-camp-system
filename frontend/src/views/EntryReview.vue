@@ -88,15 +88,23 @@ export default {
   },
   computed: {
     departmentMajors() {
-      return this.majors.filter(major => !this.selectedCollegeId || (major.college && major.college.id === this.selectedCollegeId));
+      // 筛选出与学院对应的专业
+      return this.majors.filter(major => {
+        return (
+            (!this.selectedCollegeId && major.college?.id === this.departmentIdPrefix) || // 学院管理员视角
+            (this.selectedCollegeId && major.college?.id === parseInt(this.selectedCollegeId)) // 学校管理员视角
+        );
+      });
     },
     filteredStudents() {
       return this.pendingStudents.filter(student => {
         const isMajorMatch = !this.selectedMajor || student.majorId === this.selectedMajor;
         const isStatusMatch = !this.selectedStatus || student.status === this.selectedStatus;
 
-        // 当 selectedCollegeId 为空时，不筛选学院
-        return (!this.selectedCollegeId || student.collegeId === this.selectedCollegeId) && isMajorMatch && isStatusMatch;
+        return (
+            (this.role === '2' && (!this.selectedCollegeId || student.collegeId === parseInt(this.selectedCollegeId))) || // 学校管理员筛选学院
+            (this.role !== '2' && student.collegeId === this.departmentIdPrefix) // 院系管理员的本院学生
+        ) && isMajorMatch && isStatusMatch;
       });
     }
   },

@@ -10,7 +10,7 @@
             <div class="sb-nav-link-icon"><i class="fas fa-edit"></i></div>
             报名
           </a>
-          <a class="nav-link" href="/ScoreQuery">
+          <a class="nav-link" href="/GradeQuery">
             <div class="sb-nav-link-icon"><i class="fas fa-chart-bar"></i></div>
             成绩查询
           </a>
