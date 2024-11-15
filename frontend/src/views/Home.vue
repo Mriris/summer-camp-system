@@ -439,7 +439,7 @@
 
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
               <div class="pricing-item">
-                <h3>基础计划</h3>
+                <h3>免费计划</h3>
                 <h4><sup>¥</sup>0<span> / 夏令营</span></h4>
                 <ul>
                   <li><i class="bi bi-check"></i> <span>报名与信息管理</span></li>
@@ -454,12 +454,26 @@
             <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="200">
               <div class="pricing-item featured">
                 <h3>进阶计划</h3>
-                <h4><sup>¥</sup>299<span> / 夏令营</span></h4>
+                <h4><sup>¥</sup>150<span> / 夏令营</span></h4>
                 <ul>
                   <li><i class="bi bi-check"></i> <span>报名与信息管理</span></li>
                   <li><i class="bi bi-check"></i> <span>课程与活动浏览</span></li>
                   <li><i class="bi bi-check"></i> <span>自助餐饮</span></li>
                   <li><i class="bi bi-check"></i> <span>酒店住宿</span></li>
+                </ul>
+                <a href="#" class="buy-btn">立即加入</a>
+              </div>
+            </div><!-- End Pricing Item -->
+
+            <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+              <div class="pricing-item">
+                <h3>基础计划</h3>
+                <h4><sup>¥</sup>100<span> / 夏令营</span></h4>
+                <ul>
+                  <li><i class="bi bi-check"></i> <span>报名与信息管理</span></li>
+                  <li><i class="bi bi-check"></i> <span>课程与活动浏览</span></li>
+                  <li><i class="bi bi-check"></i> <span>自助餐饮</span></li>
+                  <li class="na"><i class="bi bi-x"></i> <span>酒店住宿</span></li>
                 </ul>
                 <a href="#" class="buy-btn">立即加入</a>
               </div>
