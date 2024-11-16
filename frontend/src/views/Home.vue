@@ -234,7 +234,7 @@
           <!-- Section Title -->
           <div class="container section-title" data-aos="fade-up">
             <h2>开发团队</h2>
-            <p>大连海事大学软件工程15组</p>
+            <p>mua</p>
           </div><!-- End Section Title -->
 
           <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -245,7 +245,7 @@
                 <div class="swiper-slide">
                   <div class="testimonial-item">
                     <img src="assets/img/testimonials/team1.jpg" class="testimonial-img" alt="">
-                    <h3>燕庭轩</h3>
+                    <h3>若辰</h3>
                     <h4>组长</h4>
 <!--                    <div class="stars">-->
 <!--                      <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i-->
@@ -354,7 +354,7 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team2.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>杨可心</h4>
+                  <h4>Pumpkin</h4>
                   <span>文档负责人</span>
                   <p>负责项目文档的撰写和整理，确保每个开发步骤和技术细节被准确记录。</p>
                   <div class="social">
@@ -371,7 +371,7 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team3.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>谭佳熙</h4>
+                  <h4>熙～</h4>
                   <span>后端开发负责人</span>
                   <p>负责后端系统开发，包括API接口设计和业务逻辑实现，保障系统稳定高效。</p>
                   <div class="social">
@@ -388,7 +388,7 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team4.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>符镇侃</h4>
+                  <h4>再也不急急急死了的惟由</h4>
                   <span>数据库管理员</span>
                   <p>负责数据库的设计与维护，确保数据的完整性、安全性和高效访问。</p>
                   <div class="social">
@@ -405,7 +405,7 @@
               <div class="team-member d-flex align-items-start">
                 <div class="pic"><img src="assets/img/team/team5.jpg" class="img-fluid" alt=""></div>
                 <div class="member-info">
-                  <h4>赵网</h4>
+                  <h4>尼古拉斯.赵四</h4>
                   <span>前端开发工程师</span>
                   <p>负责前端用户界面的开发，优化用户体验，确保系统界面友好直观。</p>
                   <div class="social">
