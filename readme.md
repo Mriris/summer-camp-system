@@ -48,13 +48,13 @@ git clone https://github.com/Mriris/summer-camp-system.git
 ### 3. 启动项目
 
 #### 启动前端服务
-在前端目录下运行以下命令：
+在前端frontend目录下运行以下命令：
 ```bash
 npm run server
 ```
 
 #### 启动后端服务
-在后端主目录下，通过以下方式运行主类：
+在主目录下，通过以下方式运行主类：
 ```bash
 java -jar backend/src/main/java/org/mua/BackendApplication.java
 ```
